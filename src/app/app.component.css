@@ -1,0 +1,6 @@
+.mainContainer{
+    width: 100vw;
+    padding: 0px 10vw;
+    min-height: 100vh;
+    background-color: black;
+}

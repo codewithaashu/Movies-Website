@@ -1,0 +1,57 @@
+.container{
+    background-color: #1B1B1B;
+    padding: 20px 0px;
+}
+.logoStyle{
+    padding: 0px 20px;
+    max-height: 70px;
+}
+.navigationBox{
+    margin-top: 20px;
+}
+.linkTextStyle{
+    color: white !important;
+}
+.dropdown-menu{
+    background-color: black;
+    margin-top: 8px;
+}
+.dropdown-menu li{
+    padding-bottom: 10px;
+}
+.dropdown-menu li a{
+    color: white;
+}
+.dropdown-menu li a:hover{
+    background-color: #1F305E;
+}
+.form-control::placeholder{
+    color: white;
+}
+.searchBox{
+    padding: 20px 0px;
+}
+.searchInput{
+    padding: 10px;
+    border-radius: 0px;
+}
+.searchInput::placeholder{
+    color:white;
+    opacity: 0.35;
+}
+.btnStyle{
+    color: #fff;
+    font-size: 16px;
+    outline: 0;
+    text-align: center;
+    padding: 5px 0px;
+    width: max-content;
+}
+.btnclr
+{
+    background-color: #ff3e6c;
+    border: 1px solid #ff3e6c;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 10px;
+}

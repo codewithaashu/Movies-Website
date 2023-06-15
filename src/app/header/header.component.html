@@ -1,0 +1,139 @@
+<div class="container">
+  <div class="logoBox">
+    <img
+      src="https://m.vegamovies.tips/wp-content/uploads/2022/09/logo.png"
+      alt="Logo"
+      class="logoStyle"
+    />
+  </div>
+  <div class="navigationBox">
+    <nav class="navbar navbar-expand-lg" style="background-color: #191970">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="nav-link active linkTextStyle"
+                aria-current="page"
+                href="#"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle linkTextStyle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                🎞️ Web Series
+              </a>
+              <ul class="dropdown-menu">
+                <li *ngFor="let item of webSeries">
+                  <a class="dropdown-item" href="#">{{ item }}</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle linkTextStyle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                🎬 Movies
+              </a>
+              <ul class="dropdown-menu">
+                <li *ngFor="let items of movies">
+                  <a class="dropdown-item" href="#">{{ items }}</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle linkTextStyle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                🌐 Genre
+              </a>
+              <ul class="dropdown-menu">
+                <li *ngFor="let item of genre">
+                  <a class="dropdown-item" href="#">{{ item }}</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle linkTextStyle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                By Year
+              </a>
+              <ul class="dropdown-menu">
+                <li *ngFor="let year of years">
+                  <a class="dropdown-item" href="#">{{ year }}</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              style="background-color: inherit; color: white"
+            />
+            <button
+              class="btn btn-primary"
+              type="submit"
+              style="background-color: inherit"
+            >
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="searchBox">
+    <input
+      class="form-control searchInput me-2"
+      type="search"
+      placeholder="Search Movies or Web-Series"
+      aria-label="Search"
+      style="background-color: inherit; color: white"
+    />
+  </div>
+  <div class="categoryBox">
+    <div class="container-fluid">
+      <div class="row" style="gap: 15px; justify-content: center">
+        <div
+          class="col col-sm-3 col-md-2 col-lg-1 btnStyle"
+          *ngFor="let item of filters"
+        >
+          <button type="button" class="btnclr">{{ item }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
