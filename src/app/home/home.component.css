@@ -1,0 +1,79 @@
+.headingStyle{
+    margin-top: 15px;
+    background-color: black;
+    padding: 7px;
+    color: white;
+}
+.card{
+    box-shadow: rgba(213, 207, 207, 0.35) 0px 5px 15px;
+    width: 100%; 
+    border: 1px solid black;
+}
+.card-body{
+    padding: 14px 6px;
+    background-color: #1B1B1B;
+    color: white;
+    min-height: 120px;
+}
+.cardBox{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 70vw;
+    gap: 10px;
+    cursor: pointer;
+}
+@media screen and (min-width:480px) {
+    .cardBox{
+        grid-template-columns: 35vw 35vw;
+    }
+}
+@media screen and (min-width:720px) {
+    .cardBox{
+        grid-template-columns: 25vw 25vw 25vw;
+    }
+}
+@media screen and (min-width:920px) {
+    .cardBox{
+        grid-template-columns: 18vw 18vw 18vw 18vw;
+    }
+}
+@media screen and (min-width:1200px) {
+    .cardBox{
+        grid-template-columns: 15vw 15vw 15vw 15vw 15vw;
+    }
+}
+.card-img-top{
+    height: 260px;
+    aspect-ratio: 1;
+    border: 2px solid white;
+}
+.zoom{
+    transition: 0.5 all ease-in-out;
+    background-color: red;
+    transform: scale(1.1);
+}
+.hoverDiv{
+    color: red;
+    position: absolute;
+    top:0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.50);
+    height: 260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btnHover{
+    opacity: 0.8;
+    width: 100%;
+}
+.btnHover:hover{
+    background-color: #ff3e6c;
+    border: 1px solid #ff3e6c;
+    /* border-radius: 5px; */
+}
+.anchorText{
+    color: white;
+    text-decoration: none;
+    
+}
