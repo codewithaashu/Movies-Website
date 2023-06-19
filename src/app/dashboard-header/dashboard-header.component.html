@@ -1,0 +1,114 @@
+<div class="informationBox mt-3">
+  <div class="information-card" *ngFor="let information of informationArray">
+    <div>
+      <div class="information-text">{{ information.quantity }}</div>
+      <h6 class="text-muted">{{ information.title }}</h6>
+    </div>
+    <i
+      class="{{ information.icon }}"
+      style="font-size: 30px; padding-top: 20px"
+    ></i>
+  </div>
+</div>
+<div class="details-box">
+  <div class="recent-movies-box">
+    <div class="recent-movies-heading">
+      <h5>Recent Movies</h5>
+      <button class="btn btn-danger">View All</button>
+    </div>
+    <div class="table-responsive mt-3">
+      <table class="table table-hover" style="--bs-table-bg: none">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Released Date</th>
+            <th scope="col">Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pathan</td>
+            <td>Movies</td>
+            <td>Action</td>
+            <td>25 January 2023</td>
+            <td>7.5</td>
+          </tr>
+          <tr>
+            <td>Jawaan</td>
+            <td>Movies</td>
+            <td>Action</td>
+            <td>23 September 2023</td>
+            <td>8.3</td>
+          </tr>
+          <tr>
+            <td>Asur Season 2</td>
+            <td>Web Series</td>
+            <td>Crime</td>
+            <td>20 May 2023</td>
+            <td>8.8</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="recent-users-box">
+    <h5>Recent Users</h5>
+    <div class="user my-3">
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSfb1QfWFmTatxiz6a81GeJk6Chr3MXmcHoRNUX1E&s"
+        alt=""
+        style="width: 35px; border-radius: 50%"
+      />
+      <div>
+        <div style="font-size: 13px" class="text-info">Ashish</div>
+        <div style="font-size: 11px">Indore,India</div>
+      </div>
+    </div>
+    <div class="user my-3">
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSfb1QfWFmTatxiz6a81GeJk6Chr3MXmcHoRNUX1E&s"
+        alt=""
+        style="width: 35px; border-radius: 50%"
+      />
+      <div>
+        <div style="font-size: 13px" class="text-info">Ashish</div>
+        <div style="font-size: 11px">Indore,India</div>
+      </div>
+    </div>
+    <div class="user my-3">
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSfb1QfWFmTatxiz6a81GeJk6Chr3MXmcHoRNUX1E&s"
+        alt=""
+        style="width: 35px; border-radius: 50%"
+      />
+      <div>
+        <div style="font-size: 13px" class="text-info">Ashish</div>
+        <div style="font-size: 11px">Indore,India</div>
+      </div>
+    </div>
+    <div class="user my-3 table-responsive">
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSfb1QfWFmTatxiz6a81GeJk6Chr3MXmcHoRNUX1E&s"
+        alt=""
+        style="width: 35px; border-radius: 50%"
+      />
+      <div>
+        <div style="font-size: 13px" class="text-info">Ashish</div>
+        <div style="font-size: 11px">Indore,India</div>
+      </div>
+    </div>
+    <div class="user my-3">
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSfb1QfWFmTatxiz6a81GeJk6Chr3MXmcHoRNUX1E&s"
+        alt=""
+        style="width: 35px; border-radius: 50%"
+      />
+      <div>
+        <div style="font-size: 13px" class="text-info">Ashish</div>
+        <div style="font-size: 11px">Indore,India</div>
+      </div>
+    </div>
+  </div>
+</div>

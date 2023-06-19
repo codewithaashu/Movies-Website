@@ -1,0 +1,73 @@
+<div class="main-container">
+  <div
+    class="sidebar-container"
+    (mouseenter)="openSideBar()"
+    (mouseleave)="closeSideBar()"
+    [ngClass]="{ hide: toggle }"
+  >
+    <div class="sideBar-Heading">
+      <img
+        src="https://pixlok.com/wp-content/uploads/2021/10/Myntra-Logo-PNG-ovjndf3.jpg"
+        alt="Logo"
+        width="20px"
+        style="aspect-ratio: 1"
+      />
+      <h6>VegaMovies</h6>
+    </div>
+    <div class="sidebar">
+      <a routerLink="dashboard" class="sideNav">
+        <i class="fa fa-home" aria-hidden="true"></i>
+        <h6>Dashboard</h6>
+      </a>
+      <a routerLink="movies" class="sideNav">
+        <i class="fa-solid fa-film"></i>
+        <h6>Movies</h6>
+      </a>
+      <a routerLink="users" class="sideNav">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <h6>Users</h6>
+      </a>
+      <a routerLink="comments" class="sideNav">
+        <i class="fa-regular fa-comment"></i>
+        <h6>Comments</h6>
+      </a>
+      <a routerLink="messages" class="sideNav">
+        <i class="fa-regular fa-message"></i>
+        <h6>Messages</h6>
+      </a>
+      <a routerLink="settings" class="sideNav">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+        <h6>Settings</h6>
+      </a>
+      <div class="sideNav">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+        <h6>Sign-Out</h6>
+      </div>
+    </div>
+  </div>
+  <div class="section-container" [ngClass]="{ expand: toggle }">
+    <div class="header-container">
+      <i
+        class="fas fa-bars"
+        style="font-size: 28px; cursor: pointer"
+        (click)="openSideBar()"
+      ></i>
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+        style="width: 50%"
+      />
+      <button class="imgBtn">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSfb1QfWFmTatxiz6a81GeJk6Chr3MXmcHoRNUX1E&s"
+          alt=""
+          style="width: 25px; border-radius: 50%"
+        />
+        <h6 style="font-size: 13px">Ashish</h6>
+      </button>
+    </div>
+    <router-outlet> </router-outlet>
+  </div>
+</div>
