@@ -1,7 +1,9 @@
 <div class="mainContainer">
-    <div class="container">
-          <app-header></app-header>
-<p style="color: red;">details works!</p>
-</div>
-<!-- <app-footer></app-footer> -->
+  <div class="container">
+    <app-header></app-header>
+    <p style="color: red">details works!</p>
+    <p *ngIf="movie === null">loading...</p>
+    <p *ngIf="movie !== null" style="color: red">{{ movie.name }}</p>
+  </div>
+  <!-- <app-footer></app-footer> -->
 </div>

@@ -6,6 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MovieService } from '../Service/movie.service';
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
@@ -15,7 +16,9 @@ export class MoviesComponent {
   modal: boolean = false;
   //create a form
   movieDetailsForm: FormGroup;
-  constructor(private fb: FormBuilder) {
+  moviesList: any;
+  postData: any;
+  constructor(private fb: FormBuilder, private movie: MovieService) {
     this.movieDetailsForm = this.fb.group({
       name: new FormControl(),
       posterImg: new FormControl(),
@@ -34,6 +37,10 @@ export class MoviesComponent {
       size: new FormControl(),
       genre: this.fb.array(this.genres.map((x) => false)),
       subtitle: new FormControl(),
+    });
+    movie.getMovies().subscribe((data) => {
+      console.log(data);
+      this.moviesList = data;
     });
   }
   genres = [
@@ -66,11 +73,31 @@ export class MoviesComponent {
       return arr[index];
     });
   }
+  createArray(arg: any) {
+    return arg.split(',');
+  }
   //on submit
   formSubmit() {
-    console.log({
+    this.postData = {
       ...this.movieDetailsForm.value,
       genre: this.selectGenre(this.movieDetailsForm.value.genre),
+      quality: this.createArray(this.movieDetailsForm.value.quality),
+      size: this.createArray(this.movieDetailsForm.value.size),
+      downloadingLink: this.createArray(
+        this.movieDetailsForm.value.downloadingLink
+      ),
+    };
+    this.movie.addMovies(this.postData).subscribe((data) => {
+      console.log(data);
     });
+    // console.log({
+    //   ...this.movieDetailsForm.value,
+    //   genre: this.selectGenre(this.movieDetailsForm.value.genre),
+    //   quality: this.createArray(this.movieDetailsForm.value.quality),
+    //   size: this.createArray(this.movieDetailsForm.value.size),
+    //   downloadingLink: this.createArray(
+    //     this.movieDetailsForm.value.downloadingLink
+    //   ),
+    // });
   }
 }

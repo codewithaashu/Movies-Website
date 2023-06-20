@@ -1,38 +1,47 @@
 <div class="mainContainer">
   <div class="container">
-        <app-header></app-header>
+    <app-header></app-header>
 
-<div class="headingStyle">
-  <h6 style="font-size: 16px;">Latest Movies</h6>
-</div>
-<div class="container-fluid mt-3">
-  <div class="cardBox">
-      <div *ngFor="let movie of moviesList;let i=index;" class="card mb-3" (mouseleave)="offHover()">
-        <a routerLink= "details/{{i}}" class="anchorText">
-        <div style="overflow: hidden;" (mouseenter)="onHover(i)">
-            <img
-              src={{movie.imgSrc}}
-              class="card-img-top"
-              alt="..."
-              max-height="260px"
-              style="aspect-ratio: 1;transition: 0.5s all ease-in-out;"
-              [ngClass]="{zoom:hover&& hoverIndex===i}"
-            />
+    <div class="headingStyle">
+      <h6 style="font-size: 16px">Latest Movies</h6>
+    </div>
+    <div class="container-fluid mt-3">
+      <div class="cardBox">
+        <div
+          *ngFor="let movie of moviesList; let i = index"
+          class="card mb-3"
+          (mouseleave)="offHover()"
+        >
+          <a routerLink="details/{{ movie._id }}" class="anchorText">
+            <div style="overflow: hidden" (mouseenter)="onHover(i)">
+              <img
+                src="{{ movie.posterImg }}"
+                class="card-img-top"
+                alt="..."
+                max-height="260px"
+                style="aspect-ratio: 1; transition: 0.5s all ease-in-out"
+                [ngClass]="{ zoom: hover && hoverIndex === i }"
+              />
+            </div>
+            <div class="hoverDiv" *ngIf="hover && hoverIndex === i">
+              <button class="btn btn-primary btnHover">
+                <a
+                  href="https://www.vegamovies.tips/"
+                  class="anchorText"
+                  target="_blank"
+                  >Download</a
+                >
+              </button>
+            </div>
+            <div class="card-body">
+              <p class="card-text" style="font-size: 14px">
+                {{ movie.name }}
+              </p>
+            </div>
+          </a>
         </div>
-        <div class="hoverDiv" *ngIf="hover && hoverIndex===i">
-            <button class="btn btn-primary btnHover">
-                <a href="https://www.vegamovies.tips/" class="anchorText" target="_blank">Download</a>
-                </button>
-        </div>
-        <div class="card-body">
-          <p class="card-text" style="font-size: 14px;">
-            {{movie.title}}
-          </p>
-        </div>
-    </a>
       </div>
+    </div>
   </div>
-</div>
-</div>
-<!-- <app-footer></app-footer> -->
+  <!-- <app-footer></app-footer> -->
 </div>

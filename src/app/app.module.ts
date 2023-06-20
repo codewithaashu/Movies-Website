@@ -15,6 +15,7 @@ import { CommentsComponent } from './comments/comments.component';
 import { SettingsComponent } from './settings/settings.component';
 import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

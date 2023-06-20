@@ -40,6 +40,7 @@
               id="exampleFormControlInput1"
               placeholder="Enter movie name"
               formControlName="name"
+              required
             />
           </div>
           <div class="mb-2">
@@ -178,18 +179,6 @@
           </div>
           <div class="mb-2">
             <label for="exampleFormControlInput1" class="form-label"
-              >Downloading Link</label
-            >
-            <input
-              type="url"
-              class="form-control"
-              id="exampleFormControlInput1"
-              placeholder="Enter Downloading Link URL"
-              formControlName="downloadingLink"
-            />
-          </div>
-          <div class="mb-2">
-            <label for="exampleFormControlInput1" class="form-label"
               >Quality</label
             >
             <input
@@ -211,6 +200,18 @@
               placeholder="Enter movie size in different pixel with comma"
               formControlName="size"
             />
+          </div>
+          <div class="mb-2">
+            <label for="exampleFormControlInput1" class="form-label"
+              >Downloading Link</label
+            >
+            <textarea
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+              formControlName="downloadingLink"
+              placeholder="Enter Downloading Link in different quality with comma"
+            ></textarea>
           </div>
           <div class="mb-2">
             <label for="exampleFormControlInput1" class="form-label"
@@ -266,15 +267,10 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
+          Cancel
         </button>
-        <button
-          type="button"
-          class="btn btn-danger"
-          (click)="formSubmit()"
-          data-bs-dismiss="modal"
-        >
-          Save changes
+        <button type="button" class="btn btn-danger" (click)="formSubmit()">
+          Add Movie
         </button>
       </div>
     </div>
