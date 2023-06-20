@@ -6,15 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
-  toggle = true;
-  toggleSideBar() {
-    this.toggle = !this.toggle;
-    console.log('toogle');
-  }
+  sideBar = false;
   openSideBar() {
-    this.toggle = false;
+    this.sideBar = true;
   }
   closeSideBar() {
-    this.toggle = true;
+    this.sideBar = false;
   }
 }

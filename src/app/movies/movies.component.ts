@@ -14,9 +14,11 @@ import { MovieService } from '../Service/movie.service';
 })
 export class MoviesComponent {
   modal: boolean = false;
+  isUpdate: boolean = false;
+  idUpdate: any = null;
   //create a form
   movieDetailsForm: FormGroup;
-  moviesList: any;
+  moviesList: any = null;
   postData: any;
   constructor(private fb: FormBuilder, private movie: MovieService) {
     this.movieDetailsForm = this.fb.group({
@@ -38,9 +40,9 @@ export class MoviesComponent {
       genre: this.fb.array(this.genres.map((x) => false)),
       subtitle: new FormControl(),
     });
-    movie.getMovies().subscribe((data) => {
-      console.log(data);
-      this.moviesList = data;
+    movie.getMovies().subscribe((data: any) => {
+      console.log(data.movies);
+      this.moviesList = data.movies;
     });
   }
   genres = [
@@ -65,39 +67,113 @@ export class MoviesComponent {
     'MX Player',
     'Apple TV +',
   ];
-  openModal() {
-    this.modal = true;
-  }
-  selectGenre(arr: Array<any>) {
+
+  convertGenreName(arr: Array<any>) {
     return this.genres.filter((curr, index) => {
       return arr[index];
     });
   }
-  createArray(arg: any) {
+  convertGenreBoolean(arr: Array<any>) {
+    console.log(arr);
+    const resArr = this.genres.map((curr: any) => {
+      if (arr.includes(curr)) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    return resArr;
+  }
+  createStringToArray(arg: any) {
     return arg.split(',');
   }
+
   //on submit
   formSubmit() {
     this.postData = {
       ...this.movieDetailsForm.value,
-      genre: this.selectGenre(this.movieDetailsForm.value.genre),
-      quality: this.createArray(this.movieDetailsForm.value.quality),
-      size: this.createArray(this.movieDetailsForm.value.size),
-      downloadingLink: this.createArray(
+      genre: this.convertGenreName(this.movieDetailsForm.value.genre),
+      quality: this.createStringToArray(this.movieDetailsForm.value.quality),
+      size: this.createStringToArray(this.movieDetailsForm.value.size),
+      downloadingLink: this.createStringToArray(
         this.movieDetailsForm.value.downloadingLink
       ),
     };
-    this.movie.addMovies(this.postData).subscribe((data) => {
+    if (this.isUpdate) {
+      this.movie.updateMovie(this.idUpdate, this.postData).subscribe((data) => {
+        this.movie.getMovies().subscribe((data: any) => {
+          console.log(data.movies);
+          this.moviesList = data.movies;
+        });
+        console.log(data);
+      });
+    } else {
+      this.movie.addMovies(this.postData).subscribe((data) => {
+        this.movie.getMovies().subscribe((data: any) => {
+          console.log(data.movies);
+          this.moviesList = data.movies;
+        });
+        console.log(data);
+      });
+    }
+    this.movieDetailsForm.reset();
+  }
+
+  deleteMovie(id: any) {
+    this.movie.deleteMovie(id).subscribe((data) => {
+      this.movie.getMovies().subscribe((data: any) => {
+        console.log(data.movies);
+        this.moviesList = data.movies;
+      });
       console.log(data);
     });
-    // console.log({
-    //   ...this.movieDetailsForm.value,
-    //   genre: this.selectGenre(this.movieDetailsForm.value.genre),
-    //   quality: this.createArray(this.movieDetailsForm.value.quality),
-    //   size: this.createArray(this.movieDetailsForm.value.size),
-    //   downloadingLink: this.createArray(
-    //     this.movieDetailsForm.value.downloadingLink
-    //   ),
-    // });
+  }
+  updateMovie(id: any) {
+    this.isUpdate = true;
+    this.idUpdate = id;
+    this.movie.getMovieDetail(id).subscribe((data: any) => {
+      console.log(data.movie);
+      const {
+        name,
+        posterImg,
+        category,
+        subCategory,
+        releasedDate,
+        rating,
+        language,
+        duration,
+        director,
+        starCast,
+        storyLine,
+        screenshot,
+        quality,
+        size,
+        downloadingLink,
+        genre,
+        subtitle,
+      } = data.movie;
+      this.convertGenreBoolean(genre);
+      this.movieDetailsForm.controls['name'].setValue(name);
+      this.movieDetailsForm.controls['posterImg'].setValue(posterImg);
+      this.movieDetailsForm.controls['category'].setValue(category);
+      this.movieDetailsForm.controls['subCategory'].setValue(subCategory);
+      this.movieDetailsForm.controls['releasedDate'].setValue(releasedDate);
+      this.movieDetailsForm.controls['rating'].setValue(rating);
+      this.movieDetailsForm.controls['language'].setValue(language);
+      this.movieDetailsForm.controls['duration'].setValue(duration);
+      this.movieDetailsForm.controls['director'].setValue(director);
+      this.movieDetailsForm.controls['starCast'].setValue(starCast);
+      this.movieDetailsForm.controls['storyLine'].setValue(storyLine);
+      this.movieDetailsForm.controls['screenshot'].setValue(screenshot);
+      this.movieDetailsForm.controls['quality'].setValue(quality.toString());
+      this.movieDetailsForm.controls['size'].setValue(size.toString());
+      this.movieDetailsForm.controls['downloadingLink'].setValue(
+        downloadingLink.toString()
+      );
+      this.movieDetailsForm.controls['genre'].setValue(
+        this.convertGenreBoolean(genre)
+      );
+      this.movieDetailsForm.controls['subtitle'].setValue(subtitle);
+    });
   }
 }

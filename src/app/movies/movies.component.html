@@ -20,7 +20,13 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Movies</h1>
+        <h1
+          class="modal-title fs-5"
+          id="exampleModalLabel"
+          (click)="this.movieDetailsForm.reset()"
+        >
+          Add Movies
+        </h1>
         <button
           type="button"
           class="btn-close"
@@ -39,6 +45,7 @@
               class="form-control"
               id="exampleFormControlInput1"
               placeholder="Enter movie name"
+              value="hello"
               formControlName="name"
               required
             />
@@ -269,8 +276,13 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Cancel
         </button>
-        <button type="button" class="btn btn-danger" (click)="formSubmit()">
-          Add Movie
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="formSubmit()"
+          data-bs-dismiss="modal"
+        >
+          {{ isUpdate ? "Update Movie" : "Add Movie" }}
         </button>
       </div>
     </div>
@@ -284,32 +296,39 @@
         <tr>
           <th scope="col">Name</th>
           <th scope="col">Category</th>
-          <th scope="col">Genre</th>
+          <th scope="col">Sub-Category</th>
+          <th scope="col">Duration</th>
           <th scope="col">Released Date</th>
           <th scope="col">Rating</th>
+          <th scope="col">Action</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>Pathan</td>
-          <td>Movies</td>
-          <td>Action</td>
-          <td>25 January 2023</td>
-          <td>7.5</td>
-        </tr>
-        <tr>
-          <td>Jawaan</td>
-          <td>Movies</td>
-          <td>Action</td>
-          <td>23 September 2023</td>
-          <td>8.3</td>
-        </tr>
-        <tr>
-          <td>Asur Season 2</td>
-          <td>Web Series</td>
-          <td>Crime</td>
-          <td>20 May 2023</td>
-          <td>8.8</td>
+      <div class="spinnerContainer" *ngIf="moviesList === null">
+        <div class="spinner-border text-danger" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <tbody *ngIf="moviesList !== null">
+        <tr *ngFor="let movie of moviesList">
+          <td>{{ movie.name.slice(0, 30) + "..." }}</td>
+          <td>{{ movie.category }}</td>
+          <td>{{ movie.subCategory }}</td>
+          <td>{{ movie.duration }}</td>
+          <td>{{ movie.releasedDate }}</td>
+          <td>{{ movie.rating }}</td>
+          <td style="cursor: pointer">
+            <i
+              class="far fa-edit mx-2 text-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              (click)="updateMovie(movie._id)"
+            ></i>
+            <i
+              class="fa fa-trash mx-2 text-danger"
+              aria-hidden="true"
+              (click)="deleteMovie(movie._id)"
+            ></i>
+          </td>
         </tr>
       </tbody>
     </table>

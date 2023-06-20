@@ -34,10 +34,15 @@
   background-color: #141414;
   box-shadow: 4px 4px 18px rgba(37, 35, 35, 0.869),
     -4px -4px 18px rgba(37, 35, 35, 0.869);
-  cursor: pointer;
   color: white !important;
 }
 th,
 td {
   color: white;
+}
+.spinnerContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 80px 0px;
 }

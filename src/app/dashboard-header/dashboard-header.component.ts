@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MovieService } from '../Service/movie.service';
 
 @Component({
   selector: 'app-dashboard-header',
@@ -12,4 +13,11 @@ export class DashboardHeaderComponent {
     { title: 'Messages', icon: 'fa-regular fa-message', quantity: 45 },
     { title: 'Users', icon: 'fa fa-user', quantity: 38 },
   ];
+  moviesList: any = null;
+  constructor(private movieService: MovieService) {
+    movieService.getMovies().subscribe((data: any) => {
+      console.log(data);
+      this.moviesList = data.movies;
+    });
+  }
 }

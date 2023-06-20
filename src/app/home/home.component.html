@@ -6,6 +6,11 @@
       <h6 style="font-size: 16px">Latest Movies</h6>
     </div>
     <div class="container-fluid mt-3">
+      <div class="spinnerContainer" *ngIf="moviesList === null">
+        <div class="spinner-border text-danger" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
       <div class="cardBox">
         <div
           *ngFor="let movie of moviesList; let i = index"

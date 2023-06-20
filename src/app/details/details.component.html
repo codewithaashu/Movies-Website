@@ -1,9 +1,374 @@
 <div class="mainContainer">
   <div class="container">
     <app-header></app-header>
-    <p style="color: red">details works!</p>
-    <p *ngIf="movie === null">loading...</p>
-    <p *ngIf="movie !== null" style="color: red">{{ movie.name }}</p>
+    <div class="row my-4 m-0">
+      <div
+        class="spinnerContainer col-sm-12 col-md-8 col-lg-8"
+        *ngIf="movie === null"
+      >
+        <div class="spinner-border text-danger" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-8 col-lg-8" *ngIf="movie !== null">
+        <div class="header my-3">
+          {{ movie.name }}
+        </div>
+        <div class="row" style="margin: 0px; gap: 5px">
+          <button
+            type="button"
+            class="btn btn-secondary header_btn col-6 col-sm-6 col-md-3 col-lg-3"
+          >
+            📁{{ movie.language }}
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary header_btn col-6 col-sm-6 col-md-3 col-lg-3"
+          >
+            📁{{ movie.category }}
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary header_btn col-6 col-sm-6 col-md-3 col-lg-3"
+            let
+            *ngFor="let item of movie.genre"
+          >
+            📁{{ item }}
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary header_btn col-6 col-sm-6 col-md-3 col-lg-3"
+          >
+            📁{{ movie.subCategory }}
+          </button>
+        </div>
+        <div
+          class="my-3"
+          style="width: 100%; display: flex; justify-content: center"
+        >
+          <img src="{{ movie.posterImg }}" class="posterImg" />
+        </div>
+        <div class="info_head">MOVIE INFO</div>
+        <div class="info">
+          Name : &nbsp;
+          <span>{{ movie.name }}</span
+          ><br />
+          <hr />
+          Genre : &nbsp;
+          <span style="color: rgb(230, 78, 104)">{{
+            movie.genre.toString()
+          }}</span
+          ><br />
+          <hr />
+          Duration : &nbsp;<span style="color: yellowgreen">{{
+            movie.duration
+          }}</span
+          ><br />
+          <hr />
+          Release Date : &nbsp;<span style="color: white">{{
+            movie.releasedDate
+          }}</span
+          ><br />
+          <hr />
+          Language : &nbsp;<span>{{ movie.language }}</span
+          ><br />
+          <hr />
+          Starcast : &nbsp;
+          <span style="color: rgb(230, 78, 104)">{{ movie.starCast }}</span
+          ><br />
+          <hr />
+          Quality : &nbsp;<span style="color: orange">{{ movie.quality }}</span>
+
+          <h5 style="text-align: center; color: hotpink; font-size: 20px">
+            Movie synopsis/PLOT
+          </h5>
+          <br />
+
+          <p style="font-size: 14px">
+            {{ movie.storyLine }}
+          </p>
+        </div>
+        <div class="screenshot">SCREENSHOT</div>
+        <div
+          style="width: 100%; display: flex; justify-content: center"
+          class="my-2"
+        >
+          <img src="{{ movie.screenshot }}" class="posterImg" />
+        </div>
+        <div class="screenshot">DOWNLOAD THIS MOVIE</div>
+        <div
+          class="row my-3"
+          style="margin: 0px; gap: 10px; justify-content: center"
+        >
+          <button
+            type="button"
+            class="btn btn-secondary col-12 col-md-6 col-lg-6 downloadBtn"
+            *ngFor="let navLink of movie.downloadingLink; let i = index"
+            [ngClass]="{ skyBlueBtn: i % 2 != 0 }"
+          >
+            <a href="{{ navLink }}" target="_blank" class="anchorText">
+              DOWNLOAD NOW [{{ movie.quality[i] }}]
+            </a>
+          </button>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="btn-group">
+          <button
+            type="button"
+            class="btn btn-secondary dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            style="background-color: #2f2d2d"
+          >
+            <span
+              style="
+                margin-right: 260px;
+                color: white;
+                font-size: 18px;
+                padding: 12px;
+              "
+              >SHARE</span
+            >
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <button class="dropdown-item" type="button">Action</button>
+            <button class="dropdown-item" type="button">Another action</button>
+            <button class="dropdown-item" type="button">
+              Something else here
+            </button>
+          </div>
+        </div>
+        <br /><br />
+
+        <div style="margin-left: 10px">
+          <button type="button" class="btn btn-secondary social_btn">
+            Twitter</button
+          >&nbsp;
+          <button type="button" class="btn btn-secondary social_btn">
+            Facebook</button
+          >&nbsp;<br /><br />
+          <button type="button" class="btn btn-secondary social_btn">
+            Email</button
+          >&nbsp;
+          <button type="button" class="btn btn-secondary social_btn">
+            Whatsapp</button
+          >&nbsp;<br /><br />
+          <button type="button" class="btn btn-secondary social_btn">
+            Telegram</button
+          >&nbsp;
+          <button type="button" class="btn btn-secondary social_btn">
+            Pinterest</button
+          >&nbsp;
+        </div>
+        <br />
+
+        <div class="btn-group">
+          <button
+            type="button"
+            class="btn btn-secondary dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            style="background-color: #2f2d2d"
+          >
+            <span
+              style="
+                margin-right: 260px;
+                color: white;
+                font-size: 18px;
+                padding: 12px;
+              "
+              >SEARCH</span
+            >
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <button class="dropdown-item" type="button">Action</button>
+            <button class="dropdown-item" type="button">Another action</button>
+            <button class="dropdown-item" type="button">
+              Something else here
+            </button>
+          </div>
+        </div>
+        <br /><br />
+
+        <!-- Search form -->
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Search"
+          aria-label="Search"
+          style="width: 350px; margin-left: 20px"
+        />
+        <br />
+
+        <div class="btn-group">
+          <button
+            type="button"
+            class="btn btn-secondary dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            style="background-color: #2f2d2d"
+          >
+            <span
+              style="
+                margin-right: 250px;
+                color: white;
+                font-size: 18px;
+                padding: 12px;
+              "
+              >SEARCH</span
+            >
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <button class="dropdown-item" type="button">Action</button>
+            <button class="dropdown-item" type="button">Another action</button>
+            <button class="dropdown-item" type="button">
+              Something else here
+            </button>
+          </div>
+        </div>
+        <br /><br />
+
+        <div style="margin-left: 12px">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            style="
+              height: 30px;
+              width: 180px;
+              border-radius: 0;
+              background-color: gray;
+            "
+          >
+            Animation</button
+          >&nbsp;
+          <button
+            type="button"
+            class="btn btn-secondary"
+            style="
+              height: 30px;
+              width: 180px;
+              border-radius: 0;
+              background-color: gray;
+            "
+          >
+            Action Movie</button
+          >&nbsp;<br /><br />
+          <button
+            type="button"
+            class="btn btn-secondary"
+            style="
+              height: 30px;
+              width: 180px;
+              border-radius: 0;
+              background-color: gray;
+              margin-top: -2px;
+            "
+          >
+            BollyWood Movie</button
+          >&nbsp;
+          <button
+            type="button"
+            class="btn btn-secondary"
+            style="
+              height: 30px;
+              width: 180px;
+              border-radius: 0;
+              background-color: gray;
+              margin-top: -2px;
+            "
+          >
+            Hollywood Movie</button
+          >&nbsp;<br /><br />
+          <button
+            type="button"
+            class="btn btn-secondary"
+            style="
+              height: 30px;
+              width: 180px;
+              border-radius: 0;
+              background-color: gray;
+              margin-top: -2px;
+            "
+          >
+            Horro Movie</button
+          >&nbsp;
+          <button
+            type="button"
+            class="btn btn-secondary"
+            style="
+              height: 30px;
+              width: 180px;
+              border-radius: 0;
+              background-color: gray;
+              margin-top: -2px;
+            "
+          >
+            Romantic Movie</button
+          >&nbsp;<br /><br />
+          <button
+            type="button"
+            class="btn btn-secondary"
+            style="
+              height: 30px;
+              width: 180px;
+              border-radius: 0;
+              background-color: gray;
+              margin-top: -2px;
+            "
+          >
+            South Movie</button
+          >&nbsp;
+          <button
+            type="button"
+            class="btn btn-secondary"
+            style="
+              height: 30px;
+              width: 180px;
+              border-radius: 0;
+              background-color: gray;
+              margin-top: -2px;
+            "
+          >
+            Webseries Movie</button
+          >&nbsp;
+        </div>
+        <br />
+
+        <div class="btn-group">
+          <button
+            type="button"
+            class="btn btn-secondary dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            style="background-color: #2f2d2d"
+          >
+            <span
+              style="
+                margin-right: 180px;
+                color: white;
+                font-size: 18px;
+                padding: 12px;
+              "
+              >RECENT MOVIES</span
+            >
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <button class="dropdown-item" type="button">Action</button>
+            <button class="dropdown-item" type="button">Another action</button>
+            <button class="dropdown-item" type="button">
+              Something else here
+            </button>
+          </div>
+        </div>
+        <br /><br />
+      </div>
+    </div>
   </div>
-  <!-- <app-footer></app-footer> -->
 </div>

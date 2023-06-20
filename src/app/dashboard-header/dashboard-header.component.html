@@ -1,7 +1,7 @@
 <div class="informationBox mt-3">
   <div class="information-card" *ngFor="let information of informationArray">
     <div>
-      <div class="information-text">{{ information.quantity }}</div>
+      <div class="information-text">{{ moviesList?.length }}</div>
       <h6 class="text-muted">{{ information.title }}</h6>
     </div>
     <i
@@ -14,7 +14,10 @@
   <div class="recent-movies-box">
     <div class="recent-movies-heading">
       <h5>Recent Movies</h5>
-      <button class="btn btn-danger">View All</button>
+      <button class="btn btn-danger">
+        <!-- <a routerLink="movies"> View All </a> -->
+        View All
+      </button>
     </div>
     <div class="table-responsive mt-3">
       <table class="table table-hover" style="--bs-table-bg: none">
@@ -22,32 +25,23 @@
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Category</th>
-            <th scope="col">Genre</th>
+            <th scope="col">Sub-Category</th>
             <th scope="col">Released Date</th>
             <th scope="col">Rating</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Pathan</td>
-            <td>Movies</td>
-            <td>Action</td>
-            <td>25 January 2023</td>
-            <td>7.5</td>
-          </tr>
-          <tr>
-            <td>Jawaan</td>
-            <td>Movies</td>
-            <td>Action</td>
-            <td>23 September 2023</td>
-            <td>8.3</td>
-          </tr>
-          <tr>
-            <td>Asur Season 2</td>
-            <td>Web Series</td>
-            <td>Crime</td>
-            <td>20 May 2023</td>
-            <td>8.8</td>
+          <div class="spinnerContainer" *ngIf="moviesList === null">
+            <div class="spinner-border text-danger" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <tr *ngFor="let movie of moviesList">
+            <td>{{ movie.name.slice(0, 20) + "..." }}</td>
+            <td>{{ movie.category }}</td>
+            <td>{{ movie.subCategory }}</td>
+            <td>{{ movie.releasedDate }}</td>
+            <td>{{ movie.rating }}</td>
           </tr>
         </tbody>
       </table>

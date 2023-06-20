@@ -4,7 +4,6 @@
   grid-template-columns: 300px;
   gap: 15px;
   justify-content: center;
-  height: 25vh;
 }
 .information-card {
   padding: 20px;
@@ -40,12 +39,18 @@
 }
 .details-box {
   display: grid;
-  grid-template-columns: 75% 20%;
+  grid-template-columns: 100%;
   gap: 50px;
-  padding: 15px 30px;
-  height: 60vh;
+  padding: 15px;
   justify-content: center;
 }
+@media screen and (min-width: 720px) {
+  .details-box {
+    grid-template-columns: 75% 20%;
+    padding: 15px 30px;
+  }
+}
+
 .recent-movies-box {
   padding: 20px;
   background-color: white;
@@ -91,4 +96,10 @@ thead tr th {
   /* justify-content: center; */
   gap: 10px;
   align-items: center;
+}
+.spinnerContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 80px 0px;
 }

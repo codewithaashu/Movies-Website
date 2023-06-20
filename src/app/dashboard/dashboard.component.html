@@ -1,10 +1,5 @@
 <div class="main-container">
-  <div
-    class="sidebar-container"
-    (mouseenter)="openSideBar()"
-    (mouseleave)="closeSideBar()"
-    [ngClass]="{ hide: toggle }"
-  >
+  <div class="sidebar-container" [ngClass]="{ hide: sideBar === false }">
     <div class="sideBar-Heading">
       <img
         src="https://pixlok.com/wp-content/uploads/2021/10/Myntra-Logo-PNG-ovjndf3.jpg"
@@ -13,39 +8,58 @@
         style="aspect-ratio: 1"
       />
       <h6>VegaMovies</h6>
+      &nbsp;
+      <button
+        style="
+          position: absolute;
+          right: 0px;
+          font-size: 18px;
+          border-radius: 50%;
+          width: 30px;
+          height: 30px;
+          background-color: inherit;
+          /* text-align: center; */
+        "
+      >
+        <i
+          class="fa-solid fa-chevron-left"
+          (click)="closeSideBar()"
+          style="color: white"
+        ></i>
+      </button>
     </div>
     <div class="sidebar">
-      <a routerLink="dashboard" class="sideNav">
+      <a routerLink="dashboard" class="sideNav" (click)="closeSideBar()">
         <i class="fa fa-home" aria-hidden="true"></i>
         <h6>Dashboard</h6>
       </a>
-      <a routerLink="movies" class="sideNav">
+      <a routerLink="movies" class="sideNav" (click)="closeSideBar()">
         <i class="fa-solid fa-film"></i>
         <h6>Movies</h6>
       </a>
-      <a routerLink="users" class="sideNav">
+      <a routerLink="users" class="sideNav" (click)="closeSideBar()">
         <i class="fa fa-user" aria-hidden="true"></i>
         <h6>Users</h6>
       </a>
-      <a routerLink="comments" class="sideNav">
+      <a routerLink="comments" class="sideNav" (click)="closeSideBar()">
         <i class="fa-regular fa-comment"></i>
         <h6>Comments</h6>
       </a>
-      <a routerLink="messages" class="sideNav">
+      <a routerLink="messages" class="sideNav" (click)="closeSideBar()">
         <i class="fa-regular fa-message"></i>
         <h6>Messages</h6>
       </a>
-      <a routerLink="settings" class="sideNav">
+      <a routerLink="settings" class="sideNav" (click)="closeSideBar()">
         <i class="fa fa-cog" aria-hidden="true"></i>
         <h6>Settings</h6>
       </a>
-      <div class="sideNav">
+      <div class="sideNav" (click)="closeSideBar()">
         <i class="fa fa-sign-out" aria-hidden="true"></i>
         <h6>Sign-Out</h6>
       </div>
     </div>
   </div>
-  <div class="section-container" [ngClass]="{ expand: toggle }">
+  <div class="section-container" [ngClass]="{ expand: sideBar === true }">
     <div class="header-container">
       <i
         class="fas fa-bars"
