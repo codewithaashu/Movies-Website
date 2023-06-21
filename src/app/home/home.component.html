@@ -1,9 +1,12 @@
 <div class="mainContainer">
   <div class="container">
-    <app-header></app-header>
+    <app-header
+      (getSearch)="getSearchVal($event)"
+      (getMovie)="getMovieVal($event)"
+    ></app-header>
 
     <div class="headingStyle">
-      <h6 style="font-size: 16px">Latest Movies</h6>
+      <h6 style="font-size: 16px">{{ filter ?? "Latest" }} Movies</h6>
     </div>
     <div class="container-fluid mt-3">
       <div class="spinnerContainer" *ngIf="moviesList === null">
@@ -11,10 +14,26 @@
           <span class="visually-hidden">Loading...</span>
         </div>
       </div>
-      <div class="cardBox">
+      <div
+        *ngIf="
+          (moviesList | movieFilter : search : filter) === 'No record found'
+        "
+      >
+        <p style="color: red">No Records found !!!!</p>
+      </div>
+      <div
+        class="cardBox"
+        *ngIf="
+          (moviesList | movieFilter : search : filter) !== 'No record found'
+        "
+      >
         <div
-          *ngFor="let movie of moviesList; let i = index"
+          *ngFor="
+            let movie of moviesList | movieFilter : search : filter;
+            let i = index
+          "
           class="card mb-3"
+          style="background-color: inherit"
           (mouseleave)="offHover()"
         >
           <a routerLink="details/{{ movie._id }}" class="anchorText">

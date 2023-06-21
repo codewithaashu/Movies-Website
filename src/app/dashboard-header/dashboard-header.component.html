@@ -1,7 +1,7 @@
 <div class="informationBox mt-3">
   <div class="information-card" *ngFor="let information of informationArray">
     <div>
-      <div class="information-text">{{ moviesList?.length }}</div>
+      <div class="information-text">{{ moviesList?.length ?? "NA" }}</div>
       <h6 class="text-muted">{{ information.title }}</h6>
     </div>
     <i
@@ -15,8 +15,8 @@
     <div class="recent-movies-heading">
       <h5>Recent Movies</h5>
       <button class="btn btn-danger">
-        <!-- <a routerLink="movies"> View All </a> -->
-        View All
+        <a routerLink="/movies" class="anchorText"> View All </a>
+        <!-- View All -->
       </button>
     </div>
     <div class="table-responsive mt-3">
@@ -36,7 +36,7 @@
               <span class="visually-hidden">Loading...</span>
             </div>
           </div>
-          <tr *ngFor="let movie of moviesList">
+          <tr *ngFor="let movie of moviesList?.slice(0, 5)">
             <td>{{ movie.name.slice(0, 20) + "..." }}</td>
             <td>{{ movie.category }}</td>
             <td>{{ movie.subCategory }}</td>

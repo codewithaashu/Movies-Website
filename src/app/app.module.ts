@@ -16,6 +16,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { MovieFilterPipe } from './pipes/movie-filter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     CommentsComponent,
     SettingsComponent,
     DashboardHeaderComponent,
+    MovieFilterPipe,
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@
     class="btn btn-danger"
     data-bs-toggle="modal"
     data-bs-target="#exampleModal"
+    (click)="clearState()"
   >
     Add Movies
   </button>
@@ -20,12 +21,8 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h1
-          class="modal-title fs-5"
-          id="exampleModalLabel"
-          (click)="this.movieDetailsForm.reset()"
-        >
-          Add Movies
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          {{ isUpdate ? "Update Movie" : "Add Movie" }}
         </h1>
         <button
           type="button"
@@ -35,7 +32,11 @@
         ></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="movieDetailsForm" (ngSubmit)="formSubmit()">
+        <form
+          [formGroup]="movieDetailsForm"
+          (ngSubmit)="formSubmit()"
+          #formGroupFields="ngForm"
+        >
           <div class="mb-2">
             <label for="exampleFormControlInput1" class="form-label"
               >Name</label
@@ -83,8 +84,22 @@
               class="form-select"
               aria-label="Category"
               formControlName="subCategory"
+              *ngIf="movieDetailsForm.controls['category'].value == 'Movies'"
             >
               <option *ngFor="let item of movies" value="{{ item }}">
+                {{ item }}
+              </option>
+            </select>
+            <select
+              class="form-select"
+              aria-label="Category"
+              formControlName="subCategory"
+              *ngIf="
+                movieDetailsForm.controls['category'].value == 'Web-Series'
+              "
+            >
+              webSeries = [
+              <option *ngFor="let item of webSeries" value="{{ item }}">
                 {{ item }}
               </option>
             </select>
@@ -309,7 +324,10 @@
         </div>
       </div>
       <tbody *ngIf="moviesList !== null">
-        <tr *ngFor="let movie of moviesList">
+        <tr
+          *ngFor="let movie of moviesList; let i = index"
+          [ngClass]="{ alternateColor: i % 2 != 0 }"
+        >
           <td>{{ movie.name.slice(0, 30) + "..." }}</td>
           <td>{{ movie.category }}</td>
           <td>{{ movie.subCategory }}</td>
@@ -332,20 +350,35 @@
         </tr>
       </tbody>
     </table>
-    <nav aria-label="Page navigation example" style="float: right">
+    <nav
+      aria-label="Page navigation example"
+      style="float: right"
+      *ngIf="moviesList !== null"
+    >
       <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
+        <li
+          class="page-item page-link"
+          aria-label="Previous"
+          [ngClass]="{ disabledBtn: activePage == 1 }"
+          (click)="activePage = activePage - 1; setMoviesList(activePage)"
+        >
+          <span aria-hidden="true">&laquo;</span>
         </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
+        <li
+          class="page-item page-link"
+          *ngFor="let pageNo of pages; let i = index"
+          (click)="setMoviesList(pageNo)"
+          [ngClass]="{ active: activePage == i + 1 }"
+        >
+          {{ pageNo }}
+        </li>
+        <li
+          class="page-item page-link"
+          aria-label="Next"
+          [ngClass]="{ disabledBtn: activePage == pages[pages.length - 1] }"
+          (click)="activePage = activePage + 1; setMoviesList(activePage)"
+        >
+          <span aria-hidden="true">&raquo;</span>
         </li>
       </ul>
     </nav>

@@ -43,6 +43,10 @@ const movieSchema = new mongoose.Schema({
     type: Number,
     default: 5,
   },
+  uploadedDate: {
+    type: Date,
+    default: new Date(),
+  },
   releasedDate: {
     type: String,
     default: new Date().getFullYear(),

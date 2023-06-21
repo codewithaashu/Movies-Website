@@ -103,3 +103,7 @@ thead tr th {
   justify-content: center;
   padding: 80px 0px;
 }
+.anchorText {
+  color: white;
+  text-decoration: none;
+}

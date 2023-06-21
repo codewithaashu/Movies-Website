@@ -4,6 +4,7 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  NgForm,
   Validators,
 } from '@angular/forms';
 import { MovieService } from '../Service/movie.service';
@@ -16,11 +17,21 @@ export class MoviesComponent {
   modal: boolean = false;
   isUpdate: boolean = false;
   idUpdate: any = null;
+  genres: Array<any>;
+  movies: any;
+  webSeries: any;
+  apiData: any;
+  pages: Array<Number> = [];
+  activePage: any = 1;
   //create a form
   movieDetailsForm: FormGroup;
   moviesList: any = null;
   postData: any;
+
   constructor(private fb: FormBuilder, private movie: MovieService) {
+    this.genres = movie.genre;
+    this.movies = movie.movies;
+    this.webSeries = movie.webSeries;
     this.movieDetailsForm = this.fb.group({
       name: new FormControl(),
       posterImg: new FormControl(),
@@ -40,33 +51,9 @@ export class MoviesComponent {
       genre: this.fb.array(this.genres.map((x) => false)),
       subtitle: new FormControl(),
     });
-    movie.getMovies().subscribe((data: any) => {
-      console.log(data.movies);
-      this.moviesList = data.movies;
-    });
+
+    this.getMoviesList();
   }
-  genres = [
-    'Action',
-    'Adventure',
-    'Animation',
-    'Biography',
-    'Comedy',
-    'Crime',
-    'Drama',
-    'Family',
-    'History',
-    'Horror',
-    'Romantic',
-  ];
-  movies = ['Bollywood', 'Hollywood', 'South Dubbed'];
-  webSeries = [
-    'Netflix',
-    'Amazon Prime',
-    'Jio Cinema',
-    'Disney +',
-    'MX Player',
-    'Apple TV +',
-  ];
 
   convertGenreName(arr: Array<any>) {
     return this.genres.filter((curr, index) => {
@@ -88,6 +75,24 @@ export class MoviesComponent {
     return arg.split(',');
   }
 
+  getMoviesList() {
+    this.pages = [];
+    this.movie.getMovies().subscribe((data: any) => {
+      console.log(data.movies);
+      this.apiData = data.movies.sort((a: any, b: any) =>
+        b.uploadedDate.localeCompare(a.uploadedDate)
+      );
+      //create pages array
+      for (let i = 0; i < this.apiData?.length / 10; i++) {
+        this.pages.push(i + 1);
+      }
+      ///create first page response
+      this.moviesList = data.movies
+        .slice(0, 10)
+        .sort((a: any, b: any) => b.uploadedDate.localeCompare(a.uploadedDate));
+    });
+  }
+
   //on submit
   formSubmit() {
     this.postData = {
@@ -101,31 +106,32 @@ export class MoviesComponent {
     };
     if (this.isUpdate) {
       this.movie.updateMovie(this.idUpdate, this.postData).subscribe((data) => {
-        this.movie.getMovies().subscribe((data: any) => {
-          console.log(data.movies);
-          this.moviesList = data.movies;
-        });
+        this.getMoviesList();
         console.log(data);
       });
     } else {
       this.movie.addMovies(this.postData).subscribe((data) => {
-        this.movie.getMovies().subscribe((data: any) => {
-          console.log(data.movies);
-          this.moviesList = data.movies;
-        });
+        this.getMoviesList();
         console.log(data);
       });
     }
+    this.clearState();
+  }
+  clearState() {
+    this.isUpdate = false;
     this.movieDetailsForm.reset();
   }
-
+  setMoviesList(pageNo: any) {
+    console.log('page number', pageNo);
+    this.activePage = pageNo;
+    this.moviesList = this.apiData.slice(
+      (pageNo - 1) * 10,
+      (pageNo - 1) * 10 + 10
+    );
+  }
   deleteMovie(id: any) {
     this.movie.deleteMovie(id).subscribe((data) => {
-      this.movie.getMovies().subscribe((data: any) => {
-        console.log(data.movies);
-        this.moviesList = data.movies;
-      });
-      console.log(data);
+      this.getMoviesList();
     });
   }
   updateMovie(id: any) {

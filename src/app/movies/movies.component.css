@@ -46,3 +46,12 @@ td {
   justify-content: center;
   padding: 80px 0px;
 }
+.page-link {
+  cursor: pointer;
+}
+.disabledBtn {
+  display: none;
+}
+.alternateColor {
+  background-color: #343434;
+}

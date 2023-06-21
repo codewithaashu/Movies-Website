@@ -16,8 +16,9 @@ export class DashboardHeaderComponent {
   moviesList: any = null;
   constructor(private movieService: MovieService) {
     movieService.getMovies().subscribe((data: any) => {
-      console.log(data);
-      this.moviesList = data.movies;
+      this.moviesList = data.movies.sort((a: any, b: any) =>
+        b.uploadedDate.localeCompare(a.uploadedDate)
+      );
     });
   }
 }

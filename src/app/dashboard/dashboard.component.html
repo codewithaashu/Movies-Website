@@ -53,10 +53,10 @@
         <i class="fa fa-cog" aria-hidden="true"></i>
         <h6>Settings</h6>
       </a>
-      <div class="sideNav" (click)="closeSideBar()">
+      <a routerLink="/" class="sideNav" (click)="closeSideBar()">
         <i class="fa fa-sign-out" aria-hidden="true"></i>
         <h6>Sign-Out</h6>
-      </div>
+      </a>
     </div>
   </div>
   <div class="section-container" [ngClass]="{ expand: sideBar === true }">
