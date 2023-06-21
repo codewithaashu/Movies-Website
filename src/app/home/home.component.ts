@@ -10,7 +10,7 @@ export class HomeComponent {
   hover: boolean = false;
   hoverIndex: any = null;
   moviesList: any = null;
-
+  isFilter: boolean = false;
   search: any;
   filter: any;
 
@@ -26,12 +26,14 @@ export class HomeComponent {
     this.search = $event;
   }
   getMovieVal(filter: any) {
+    this.isFilter = true;
     console.log('passing data from header', filter);
     console.log('filter home', filter);
     console.log('filter home service', filter);
     this.filter = filter;
   }
   constructor(private movie: MovieService) {
+    this.isFilter = false;
     this.filter = movie.filterCriteria;
     movie.getMovies().subscribe((data: any) => {
       this.moviesList = data.movies.sort((a: any, b: any) =>

@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 export class MovieService {
   URI = 'http://localhost:9000/movies';
   filterCriteria: any;
+  trendingCriteria: Number = 7.2;
+  latestCriteria: Number = 15;
   genre = [
     'Action',
     'Adventure',
