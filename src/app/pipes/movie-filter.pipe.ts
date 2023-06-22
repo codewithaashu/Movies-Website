@@ -12,26 +12,22 @@ export class MovieFilterPipe implements PipeTransform {
     this.latestCriteria = movieService.latestCriteria;
   }
   transform(value: [], search: string, filter: string): any {
-    console.log('pipes filter', filter, search);
     if (search) {
       const resp = value?.filter((m: any) =>
         m?.name?.toLowerCase()?.includes(search)
       );
-      return resp?.length === 0 ? 'No record found' : resp;
+      return resp;
     } else if (filter) {
-      console.log(value);
       if (filter === 'Trending') {
         const resp = value?.filter((m: any) => {
           return m?.rating >= this.trendingCriteria;
         });
-        console.log('response', resp);
-        return resp?.length === 0 ? 'No record found' : resp;
+        return resp;
       } else if (filter === 'Latest') {
         const resp = value?.filter((m: any, index: any) => {
           return index < this.latestCriteria;
         });
-        console.log('response', resp);
-        return resp?.length === 0 ? 'No record found' : resp;
+        return resp;
       }
       const resp = value?.filter(
         (m: any) =>
@@ -40,8 +36,6 @@ export class MovieFilterPipe implements PipeTransform {
           m?.genre?.includes(filter) ||
           m?.language?.includes(filter)
       );
-      console.log('response', resp);
-      // return resp?.length === 0 ? 'No record found' : resp;
       return resp;
     } else {
       return value;
