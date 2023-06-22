@@ -7,7 +7,7 @@ export class MovieService {
   URI = 'http://localhost:9000/movies';
   filterCriteria: any;
   trendingCriteria: Number = 7.2;
-  latestCriteria: Number = 15;
+  latestCriteria: Number = 12;
   genre = [
     'Action',
     'Adventure',
