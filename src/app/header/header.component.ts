@@ -23,11 +23,9 @@ export class HeaderComponent {
   }
 
   searchData(event: any) {
-    console.log(event, 'header');
     this.getSearch.emit(event.target.value);
   }
   filterMovie(filter: string) {
-    console.log('header', filter);
     this.getMovie.emit(filter);
   }
 }

@@ -1,11 +1,10 @@
 <div class="mainContainer">
-  <div class="container">
-    <app-header
-      (getSearch)="getSearchVal($event)"
-      (getMovie)="getMovieVal($event)"
-    ></app-header>
-
-    <div class="headingStyle" *ngIf="isFilter">
+  <app-header
+    (getSearch)="getSearchVal($event)"
+    (getMovie)="getMovieVal($event)"
+  ></app-header>
+  <div class="container" style="--bs-gutter-x: 0">
+    <div class="headingStyle" *ngIf="isFilter" style="width: 100%">
       <h6 style="font-size: 16px">{{ filter ?? "Latest" }} Movies</h6>
       <div style="display: flex; gap: 10px; align-items: center">
         <i class="fa fa-rss" style="font-size: 14px"></i>
@@ -26,12 +25,12 @@
           <span class="visually-hidden">Loading...</span>
         </div>
       </div>
-      <div *ngIf="(moviesList | movieFilter : search : filter).length === 0">
+      <div *ngIf="(moviesList | movieFilter : search : filter)?.length === 0">
         <p style="color: red">No Records found !!!!</p>
       </div>
       <div
         class="cardBox"
-        *ngIf="(moviesList | movieFilter : search : filter).length > 0"
+        *ngIf="(moviesList | movieFilter : search : filter)?.length > 0"
       >
         <div
           *ngFor="
@@ -73,5 +72,5 @@
       </div>
     </div>
   </div>
-  <!-- <app-footer></app-footer> -->
+  <app-footer *ngIf="moviesList !== null"></app-footer>
 </div>

@@ -3,7 +3,6 @@ import Movies from "../DB/Model/movies.js";
 export const getAllMovies = async (req, res) => {
   try {
     const movies = await Movies.find({});
-    console.log(movies);
     res.status(200).json({ movies: movies });
   } catch (err) {
     res.status(500).json({ message: "Server Error" });
@@ -12,7 +11,6 @@ export const getAllMovies = async (req, res) => {
 
 export const addMovie = async (req, res) => {
   try {
-    console.log(req.body);
     let movie = await Movies.findOne({ name: req.body.name });
     if (movie) {
       return res.status(400).json({ message: "Movies Already Exist" });
@@ -26,7 +24,6 @@ export const addMovie = async (req, res) => {
 
 export const getMovie = async (req, res) => {
   try {
-    console.log(req.params.id);
     const movie = await Movies.findOne({ _id: req.params.id });
     if (!movie) {
       return res.status(400).json({ message: "Movie does not exist" });
@@ -51,7 +48,6 @@ export const updateMovie = async (req, res) => {
         runValidators: true,
       }
     );
-    //console.log("movies", movies);
     res.status(200).json({ movies, message: "Movie Detail exist" });
   } catch (err) {
     res.status(500).json({ message: "Server Error" });
@@ -59,7 +55,6 @@ export const updateMovie = async (req, res) => {
 };
 export const deleteMovie = async (req, res) => {
   try {
-    console.log(req.params.id);
     const movie = await Movies.findOne({ _id: req.params.id });
     if (!movie) {
       return res.status(400).json({ message: "Movie does not exist" });

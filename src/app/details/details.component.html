@@ -1,6 +1,6 @@
 <div class="mainContainer">
+  <app-header (getMovie)="getMovieVal($event)"></app-header>
   <div class="container">
-    <app-header (getMovie)="getMovieVal($event)"></app-header>
     <div class="row my-4 m-0">
       <div
         class="spinnerContainer col-sm-12 col-md-8 col-lg-8"
@@ -372,4 +372,5 @@
       </div>
     </div>
   </div>
+  <app-footer *ngIf="movie !== null"></app-footer>
 </div>

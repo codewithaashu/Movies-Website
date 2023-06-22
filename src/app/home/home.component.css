@@ -6,7 +6,8 @@
 }
 .container {
   background-color: #1b1b1b;
-  padding: 20px 0px;
+  height: 100%;
+  /* padding: 20px 0px; */
 }
 .headingStyle {
   margin-top: 15px;
@@ -78,9 +79,7 @@
   width: 100%;
 }
 .btnHover:hover {
-  background-color: #ff3e6c;
-  border: 1px solid #ff3e6c;
-  /* border-radius: 5px; */
+  opacity: 0.6;
 }
 .anchorText {
   color: white;

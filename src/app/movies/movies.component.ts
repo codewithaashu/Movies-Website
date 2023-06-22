@@ -61,7 +61,6 @@ export class MoviesComponent {
     });
   }
   convertGenreBoolean(arr: Array<any>) {
-    console.log(arr);
     const resArr = this.genres.map((curr: any) => {
       if (arr.includes(curr)) {
         return true;
@@ -78,7 +77,6 @@ export class MoviesComponent {
   getMoviesList() {
     this.pages = [];
     this.movie.getMovies().subscribe((data: any) => {
-      console.log(data.movies);
       this.apiData = data.movies.sort((a: any, b: any) =>
         b.uploadedDate.localeCompare(a.uploadedDate)
       );
@@ -107,12 +105,10 @@ export class MoviesComponent {
     if (this.isUpdate) {
       this.movie.updateMovie(this.idUpdate, this.postData).subscribe((data) => {
         this.getMoviesList();
-        console.log(data);
       });
     } else {
       this.movie.addMovies(this.postData).subscribe((data) => {
         this.getMoviesList();
-        console.log(data);
       });
     }
     this.clearState();
@@ -122,7 +118,6 @@ export class MoviesComponent {
     this.movieDetailsForm.reset();
   }
   setMoviesList(pageNo: any) {
-    console.log('page number', pageNo);
     this.activePage = pageNo;
     this.moviesList = this.apiData.slice(
       (pageNo - 1) * 10,
@@ -138,7 +133,6 @@ export class MoviesComponent {
     this.isUpdate = true;
     this.idUpdate = id;
     this.movie.getMovieDetail(id).subscribe((data: any) => {
-      console.log(data.movie);
       const {
         name,
         posterImg,

@@ -22,18 +22,14 @@ export class HomeComponent {
     this.hover = false;
   }
   getSearchVal($event: any) {
-    console.log($event);
     this.search = $event;
   }
   getMovieVal(filter: any) {
     this.isFilter = true;
-    console.log('passing data from header', filter);
-    console.log('filter home', filter);
-    console.log('filter home service', filter);
     this.filter = filter;
   }
   constructor(private movie: MovieService) {
-    this.isFilter = false;
+    this.isFilter = movie.filterCriteria ? true : false;
     this.filter = movie.filterCriteria;
     movie.getMovies().subscribe((data: any) => {
       this.moviesList = data.movies.sort((a: any, b: any) =>

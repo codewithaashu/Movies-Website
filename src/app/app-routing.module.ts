@@ -9,6 +9,7 @@ import { CommentsComponent } from './comments/comments.component';
 import { MessagesComponent } from './messages/messages.component';
 import { SettingsComponent } from './settings/settings.component';
 import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
+import { ContactusComponent } from './contactus/contactus.component';
 const routes: Routes = [
   {
     path: '',
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'details/:id',
     component: DetailsComponent,
+  },
+  {
+    path: 'contactus',
+    component: ContactusComponent,
   },
   {
     path: '',

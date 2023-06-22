@@ -52,8 +52,6 @@ export class MovieService {
     return this.http.get(this.URI);
   }
   addMovies(postData: any) {
-    console.log(postData);
-
     return this.http.post(this.URI, postData);
   }
   getMovieDetail(_id: any) {

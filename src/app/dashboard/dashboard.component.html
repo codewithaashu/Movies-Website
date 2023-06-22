@@ -1,13 +1,19 @@
 <div class="main-container">
   <div class="sidebar-container" [ngClass]="{ hide: sideBar === false }">
     <div class="sideBar-Heading">
-      <img
-        src="https://pixlok.com/wp-content/uploads/2021/10/Myntra-Logo-PNG-ovjndf3.jpg"
-        alt="Logo"
-        width="20px"
-        style="aspect-ratio: 1"
-      />
-      <h6>VegaMovies</h6>
+      <a
+        aria-current="page"
+        to="/"
+        style="
+          color: white;
+          font-weight: 900;
+          font-size: 16px;
+          font-weight: 600;
+          cursor: pointer;
+        "
+        >Movie<span style="color: rgb(229, 9, 20); font-size: 16px">Mania</span
+        >&nbsp;
+      </a>
       &nbsp;
       <button
         style="

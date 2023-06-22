@@ -1,0 +1,261 @@
+<div class="mainContainer">
+  <div style="background-color: rgb(10, 1, 3)">
+    <div class="logoBox py-2 px-4">
+      <a
+        aria-current="page"
+        to="/"
+        style="
+          color: white;
+          font-weight: 900;
+          font-size: 22px;
+          font-weight: 600;
+          cursor: pointer;
+        "
+        >Movie<span style="color: rgb(229, 9, 20); font-size: 29px">Mania</span
+        >&nbsp;
+      </a>
+    </div>
+    <div class="navigationBox">
+      <nav class="navbar navbar-expand-lg" style="background-color: #191970">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a
+                  class="nav-link active linkTextStyle"
+                  aria-current="page"
+                  href="/"
+                  >Home</a
+                >
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <a routerLink="/dashboard" class="anchorText">
+                <button
+                  class="btn btn-primary"
+                  type="submit"
+                  style="background-color: inherit"
+                >
+                  Login
+                </button>
+              </a>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div class="container">
+    <div
+      class="text-center"
+      style="
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      "
+    >
+      <h1 class="portfolio-h1">Contact Me</h1>
+      <div style="display: flex; justify-content: center; gap: 30px">
+        <p class="services-p">For Any Removal Request And Issue</p>
+        <p class="services-p">For Request Movies</p>
+      </div>
+    </div>
+    <div class="row mt-4 contact-main-card-box pb-5 pt-4">
+      <div
+        class="col-12 col-md-4 col-lg-4 contact-card-box"
+        style="width: min-content"
+      >
+        <div>
+          <img class="cont-img" src="../../assets/contact-img.jpg" alt="" />
+          <div class="pt-3">
+            <h3 class="card-h3" style="font-size: 24px; font-weight: 600">
+              Mr. Ashish Ranjan
+            </h3>
+            <p class="contact-p">
+              MERN Stack Developer
+              <br />
+              I am open to work. Connect with me via E-mail and call in to my
+              Acccount
+            </p>
+            <h6 class="contact-h6">
+              Phone: +91-7371986179
+              <br />
+              Email : codewithaashu1@gmail.com
+            </h6>
+            <h4 class="contact-btn-head pt-3">Touch With Me</h4>
+            <button class="iconBtn">
+              <a
+                href="https://www.linkedin.com/in/ashishranjan1626/"
+                target="_blank"
+              >
+                <i class="fa fa-linkedin icon" aria-hidden="true"></i>
+              </a>
+            </button>
+            <button class="iconBtn">
+              <a
+                href="https://www.instagram.com/codewithaashu_/"
+                target="_blank"
+              >
+                <i class="fa fa-instagram icon" aria-hidden="true"></i>
+              </a>
+            </button>
+            <button class="iconBtn">
+              <a href="https://www.facebook.com/" target="_blank">
+                <i class="fa fa-telegram icon"></i>
+              </a>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-8 col-lg-8">
+        <form
+          class="form-card-box"
+          [formGroup]="contactForm"
+          (ngSubmit)="formSubmit()"
+        >
+          <div class="form-group pt-1">
+            <label for="inputAddress" class="labelClass label-div"
+              >Full Name</label
+            >
+            <input
+              type="text"
+              name="name"
+              id="name"
+              class="form-control input-div"
+              placeholder="Enter your Full Name"
+              formControlName="name"
+              required
+            />
+            <p
+              *ngIf="contactForm.controls['name'].errors?.['required']"
+              style="color: red; font-size: 13px"
+            >
+              Name is required.
+            </p>
+            <p
+              *ngIf="contactForm.controls['name'].errors?.['minlength']"
+              style="color: red; font-size: 13px"
+            >
+              Name must be minimum 4 letters.
+            </p>
+          </div>
+          <div class="form-group mt-4">
+            <label for="exampleInputEmail1" class="labelClass label-div"
+              >Email address</label
+            >
+            <input
+              type="email"
+              name="email"
+              class="form-control input-div"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder="Enter email"
+              formControlName="email"
+            />
+            <p
+              *ngIf="contactForm.controls['email'].errors?.['email']"
+              style="color: red; font-size: 13px"
+            >
+              Invalid Email.
+            </p>
+          </div>
+          <div class="form-group mt-4">
+            <label for="inputAddress2" class="labelClass label-div"
+              >Phone Number</label
+            >
+            <input
+              type="text"
+              name="phone"
+              class="form-control input-div"
+              placeholder="Enter your Phone Number"
+              formControlName="phone"
+            />
+            <p
+              *ngIf="contactForm.controls['phone'].errors?.['minlength']"
+              style="color: red; font-size: 13px"
+            >
+              Mobile number must be 10 digit
+            </p>
+          </div>
+          <div class="form-group mt-4">
+            <label
+              for="exampleFormControlInput1"
+              class="form-label labelClass label-div"
+              >Purpose</label
+            >
+            <select
+              class="form-select"
+              aria-label="Purpose"
+              formControlName="purpose"
+            >
+              <option value="Request Movies">Request Movies</option>
+              <option selected value="Removal Request">Removal Request</option>
+              <option selected value="Other">Other</option>
+            </select>
+            <p
+              *ngIf="contactForm.controls['purpose'].errors?.['required']"
+              style="color: red; font-size: 13px"
+            >
+              Purpose is required.
+            </p>
+          </div>
+          <div class="form-group mt-4">
+            <label for="inputAddress" class="labelClass label-div"
+              >Message</label
+            >
+            <textarea
+              type="text"
+              name="message"
+              class="form-control input-div"
+              placeholder="Enter your Message"
+              style="height: 100px"
+              formControlName="message"
+            ></textarea>
+            <p
+              *ngIf="contactForm.controls['message'].errors?.['required']"
+              style="color: red; font-size: 13px"
+            >
+              Message is required.
+            </p>
+            <p
+              *ngIf="contactForm.controls['message'].errors?.['minlength']"
+              style="color: red; font-size: 13px"
+            >
+              Message must contains minimum 10 letters.
+            </p>
+          </div>
+          <div style="display: flex; justify-content: center">
+            <button
+              class="form-btn mt-4 mx-2"
+              style="
+                height: min-content;
+                border: none;
+                align-items: center;
+                font-weight: 600;
+                font-size: 15px;
+                outline: none;
+              "
+              (click)="formSubmit()"
+            >
+              Send Messages
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>
