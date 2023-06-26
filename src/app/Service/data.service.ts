@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class DataService {
-  baseURI = 'http://localhost:9000';
+  // baseURI = 'http://localhost:9000';
+  baseURI = 'https://moviesmania-server.onrender.com';
   filterCriteria: any;
   trendingCriteria: Number = 7.2;
   latestCriteria: Number = 12;
