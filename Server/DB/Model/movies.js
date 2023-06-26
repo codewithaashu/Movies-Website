@@ -74,6 +74,20 @@ const movieSchema = new mongoose.Schema({
     type: String,
     default: "No",
   },
+  comments: {
+    type: [
+      {
+        comment: { type: String, required: true },
+        name: { type: String, required: true },
+        email: String,
+        phone: Number,
+        commentTime: {
+          type: String,
+          default: new Date().toLocaleString(),
+        },
+      },
+    ],
+  },
 });
 
 const Movies = mongoose.model("Movies", movieSchema);

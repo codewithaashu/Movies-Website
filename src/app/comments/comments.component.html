@@ -1,1 +1,109 @@
-<p>comments works!</p>
+<div class="moviesHeadingBox m-4">
+  <h5>Comments</h5>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 text-dark" id="staticBackdropLabel">
+          Comment
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body text-muted">{{ comment }}</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="table-box m-5">
+  <div class="table-responsive">
+    <table class="table table-hover" style="--bs-table-bg: none">
+      <thead>
+        <tr>
+          <th scope="col">Comment Time</th>
+          <th scope="col">Movie Name</th>
+          <th scope="col">Category</th>
+          <th scope="col">Commenter</th>
+          <th scope="col">Comment</th>
+        </tr>
+      </thead>
+      <div class="spinnerContainer" *ngIf="comments === null">
+        <div class="spinner-border text-danger" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <tbody *ngFor="let comment of comments; let i = index">
+        <tr
+          *ngFor="let com of comment.comments; let j = index"
+          [ngClass]="{ alternateColor: (i + j) % 2 != 0 }"
+        >
+          <td>{{ com.commentTime }}</td>
+          <td>{{ comment.name.slice(0, 25) ?? "NA" }}</td>
+          <td>{{ comment.category }}</td>
+          <td>{{ com.name }}</td>
+          <td style="cursor: pointer">
+            <i
+              class="fa fa-eye mx-2 text-warning"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+              (click)="viewComments(com.comment)"
+            ></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <nav
+      aria-label="Page navigation example"
+      style="float: right"
+      *ngIf="comments !== null"
+      class="my-3"
+    >
+      <ul class="pagination">
+        <li
+          class="page-item page-link"
+          aria-label="Previous"
+          [ngClass]="{ disabledBtn: activePage == 1 }"
+          (click)="activePage = activePage - 1; setCommentList(activePage)"
+        >
+          <span aria-hidden="true">&laquo;</span>
+        </li>
+        <li
+          class="page-item page-link"
+          *ngFor="let pageNo of pages; let i = index"
+          (click)="setCommentList(pageNo)"
+          [ngClass]="{ active: activePage == i + 1 }"
+        >
+          {{ pageNo }}
+        </li>
+        <li
+          class="page-item page-link"
+          aria-label="Next"
+          [ngClass]="{ disabledBtn: activePage == pages[pages.length - 1] }"
+          (click)="activePage = activePage + 1; setCommentList(activePage)"
+        >
+          <span aria-hidden="true">&raquo;</span>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

@@ -5,48 +5,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MovieService {
   URI = 'http://localhost:9000/movies';
-  filterCriteria: any;
-  trendingCriteria: Number = 7.2;
-  latestCriteria: Number = 12;
-  genre = [
-    'Action',
-    'Adventure',
-    'Animation',
-    'Biography',
-    'Comedy',
-    'Crime',
-    'Drama',
-    'Family',
-    'History',
-    'Horror',
-    'Romantic',
-  ];
-  webSeries = [
-    'Netflix',
-    'Amazon Prime',
-    'Jio Cinema',
-    'Disney+ Hotstar',
-    'MX Player',
-    'Apple TV +',
-  ];
-  filters: Array<any> = [
-    'Latest',
-    'Trending',
-    'Bollywood',
-    'South Dubbed',
-    'Netflix',
-    'Hollywood',
-    'Action',
-    'Amazon Prime',
-    'Crime',
-    'MX Player',
-    'Horror',
-    'Jio Cinema',
-    'Disney+ Hotstar',
-    'Romantic',
-    'Apple TV +',
-  ];
-  movies = ['Bollywood', 'Hollywood', 'South Dubbed'];
   constructor(private http: HttpClient) {}
   getMovies() {
     return this.http.get(this.URI);

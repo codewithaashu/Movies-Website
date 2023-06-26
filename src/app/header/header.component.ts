@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { MovieService } from '../Service/movie.service';
+import { DataService } from '../Service/data.service';
 
 @Component({
   selector: 'app-header',
@@ -15,11 +16,11 @@ export class HeaderComponent {
   webSeries: any;
   years: Array<any> = [];
   filters: any;
-  constructor(private movie: MovieService) {
-    this.genre = movie.genre;
-    this.movies = movie.movies;
-    this.webSeries = movie.webSeries;
-    this.filters = movie.filters;
+  constructor(private movie: MovieService, private data: DataService) {
+    this.genre = data.genre;
+    this.movies = data.movies;
+    this.webSeries = data.webSeries;
+    this.filters = data.filters;
   }
 
   searchData(event: any) {

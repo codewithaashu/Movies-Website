@@ -8,6 +8,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { MovieService } from '../Service/movie.service';
+import { DataService } from '../Service/data.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
@@ -28,10 +30,15 @@ export class MoviesComponent {
   moviesList: any = null;
   postData: any;
 
-  constructor(private fb: FormBuilder, private movie: MovieService) {
-    this.genres = movie.genre;
-    this.movies = movie.movies;
-    this.webSeries = movie.webSeries;
+  constructor(
+    private fb: FormBuilder,
+    private dataService: DataService,
+    private movie: MovieService,
+    private toast: ToastrService
+  ) {
+    this.genres = dataService.genre;
+    this.movies = dataService.movies;
+    this.webSeries = dataService.webSeries;
     this.movieDetailsForm = this.fb.group({
       name: new FormControl(),
       posterImg: new FormControl(),
@@ -93,25 +100,34 @@ export class MoviesComponent {
 
   //on submit
   formSubmit() {
-    this.postData = {
-      ...this.movieDetailsForm.value,
-      genre: this.convertGenreName(this.movieDetailsForm.value.genre),
-      quality: this.createStringToArray(this.movieDetailsForm.value.quality),
-      size: this.createStringToArray(this.movieDetailsForm.value.size),
-      downloadingLink: this.createStringToArray(
-        this.movieDetailsForm.value.downloadingLink
-      ),
-    };
-    if (this.isUpdate) {
-      this.movie.updateMovie(this.idUpdate, this.postData).subscribe((data) => {
-        this.getMoviesList();
-      });
-    } else {
-      this.movie.addMovies(this.postData).subscribe((data) => {
-        this.getMoviesList();
-      });
+    try {
+      this.postData = {
+        ...this.movieDetailsForm.value,
+        genre: this.convertGenreName(this.movieDetailsForm.value.genre),
+        quality: this.createStringToArray(this.movieDetailsForm.value.quality),
+        size: this.createStringToArray(this.movieDetailsForm.value.size),
+        downloadingLink: this.createStringToArray(
+          this.movieDetailsForm.value.downloadingLink
+        ),
+      };
+      if (this.isUpdate) {
+        this.movie
+          .updateMovie(this.idUpdate, this.postData)
+          .subscribe((data) => {
+            this.toast.success('Movies updated successfully.');
+            this.getMoviesList();
+          });
+      } else {
+        this.movie.addMovies(this.postData).subscribe((data) => {
+          console.log('data', data);
+          this.toast.success('Movies added successfully.');
+          this.getMoviesList();
+        });
+      }
+      this.clearState();
+    } catch (err) {
+      this.toast.error('Failed', 'Invalid Details');
     }
-    this.clearState();
   }
   clearState() {
     this.isUpdate = false;
@@ -126,6 +142,7 @@ export class MoviesComponent {
   }
   deleteMovie(id: any) {
     this.movie.deleteMovie(id).subscribe((data) => {
+      this.toast.success('Movies deleted successfully');
       this.getMoviesList();
     });
   }

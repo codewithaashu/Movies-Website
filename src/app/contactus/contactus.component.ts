@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MovieService } from '../Service/movie.service';
+import { ToastrService } from 'ngx-toastr';
 import {
   FormBuilder,
   FormControl,
@@ -7,6 +7,7 @@ import {
   Validators,
   NgForm,
 } from '@angular/forms';
+import { ContactService } from '../Service/contact.service';
 
 @Component({
   selector: 'app-contactus',
@@ -15,7 +16,11 @@ import {
 })
 export class ContactusComponent {
   contactForm: FormGroup;
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private contact: ContactService,
+    private toastr: ToastrService
+  ) {
     window.scrollTo(0, 0);
     this.contactForm = fb.group({
       name: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -25,16 +30,22 @@ export class ContactusComponent {
       message: new FormControl('', [
         Validators.required,
         Validators.minLength(10),
+        Validators.maxLength(200),
       ]),
     });
   }
+
   formSubmit() {
+    console.log(this.contactForm.valid);
     if (this.contactForm.valid) {
-      alert('Message Successfully sent.');
-      this.contactForm.reset();
+      this.contact
+        .sendMessage(this.contactForm.value)
+        .subscribe((data: any) => {
+          this.toastr.success(data?.msge);
+          this.contactForm.reset();
+        });
     } else {
-      alert('Please fill all the field.');
+      this.toastr.error('Please filled all mandatory field.');
     }
-    console.log(this.contactForm.value);
   }
 }

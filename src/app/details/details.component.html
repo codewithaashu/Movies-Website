@@ -1,7 +1,7 @@
 <div class="mainContainer">
   <app-header (getMovie)="getMovieVal($event)"></app-header>
   <div class="container">
-    <div class="row my-4 m-0">
+    <div class="row m-0">
       <div
         class="spinnerContainer col-sm-12 col-md-8 col-lg-8"
         *ngIf="movie === null"
@@ -99,30 +99,26 @@
         </div>
         <div class="screenshot">DOWNLOAD THIS MOVIE</div>
         <div
-          class="row my-3"
+          class="row my-4"
           style="margin: 0px; gap: 10px; justify-content: center"
         >
           <button
             type="button"
             class="btn btn-secondary col-12 col-md-6 col-lg-6 downloadBtn"
             *ngFor="let navLink of movie.downloadingLink; let i = index"
-            [ngClass]="{ skyBlueBtn: i % 2 != 0 }"
           >
             <a href="{{ navLink }}" target="_blank" class="anchorText">
               DOWNLOAD NOW [{{ movie.quality[i] }}]
             </a>
           </button>
         </div>
+        <app-comment [_id]="params"></app-comment>
       </div>
-
-      <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+      <div class="col-12 col-sm-12 col-md-4 col-lg-4 my-3">
         <div class="btn-group">
           <button
             type="button"
-            class="btn btn-secondary dropdown-toggle"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
+            class="btn btn-secondary"
             style="background-color: #2f2d2d"
           >
             <span
@@ -135,216 +131,74 @@
               >SHARE</span
             >
           </button>
-          <div class="dropdown-menu dropdown-menu-right">
-            <button class="dropdown-item" type="button">Action</button>
-            <button class="dropdown-item" type="button">Another action</button>
-            <button class="dropdown-item" type="button">
-              Something else here
-            </button>
-          </div>
         </div>
-        <br /><br />
 
-        <div style="margin-left: 10px">
-          <button type="button" class="btn btn-secondary social_btn">
-            Twitter</button
-          >&nbsp;
-          <button type="button" class="btn btn-secondary social_btn">
-            Facebook</button
-          >&nbsp;<br /><br />
-          <button type="button" class="btn btn-secondary social_btn">
-            Email</button
-          >&nbsp;
-          <button type="button" class="btn btn-secondary social_btn">
-            Whatsapp</button
-          >&nbsp;<br /><br />
-          <button type="button" class="btn btn-secondary social_btn">
-            Telegram</button
-          >&nbsp;
-          <button type="button" class="btn btn-secondary social_btn">
-            Pinterest</button
-          >&nbsp;
+        <div class="px-3 my-3 shareBox">
+          <a
+            type="button"
+            class="btn btn-secondary social_btn"
+            style="color: #22b8ff"
+            href="https://www.twitter.com?text={{ location }}"
+            target="_blank"
+          >
+            <i class="fa fa-twitter"></i>
+            &nbsp; Twitter
+          </a>
+          <a
+            type="button"
+            class="btn btn-secondary social_btn"
+            href="https://www.facebook.com?text={{ location }}"
+            target="_blank"
+            style="color: #6183f3"
+          >
+            <i class="fa fa-facebook"></i>
+            &nbsp; Facebook
+          </a>
+          <a
+            type="button"
+            class="btn btn-secondary social_btn"
+            style="color: #ff6d82"
+            href="mailto:?subject={{ location }}"
+            target="_blank"
+          >
+            <i class="fa fa-envelope"></i>
+            &nbsp; Email
+          </a>
+          <a
+            type="button"
+            class="btn btn-secondary social_btn"
+            style="color: #10d245"
+            href="https://api.whatsapp.com?text={{ location }}"
+            target="_blank"
+          >
+            <i class="fa fa-whatsapp"></i>
+            &nbsp; Whatsapp
+          </a>
+          <a
+            type="button"
+            class="btn btn-secondary social_btn"
+            style="color: #0077b3"
+            href="https://telegram.me?text={{ location }}"
+            target="_blank"
+          >
+            <i class="fa fa-telegram"></i>
+            &nbsp; Telegram
+          </a>
+          <a
+            type="button"
+            class="btn btn-secondary social_btn"
+            href="https://instagram.com?text={{ location }}"
+            target="_blank"
+            style="color: #ea4158"
+          >
+            <i class="fa fa-instagram"></i>
+            &nbsp; Instagram
+          </a>
         </div>
-        <br />
-
         <div class="btn-group">
           <button
             type="button"
-            class="btn btn-secondary dropdown-toggle"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            style="background-color: #2f2d2d"
-          >
-            <span
-              style="
-                margin-right: 260px;
-                color: white;
-                font-size: 18px;
-                padding: 12px;
-              "
-              >SEARCH</span
-            >
-          </button>
-          <div class="dropdown-menu dropdown-menu-right">
-            <button class="dropdown-item" type="button">Action</button>
-            <button class="dropdown-item" type="button">Another action</button>
-            <button class="dropdown-item" type="button">
-              Something else here
-            </button>
-          </div>
-        </div>
-        <br /><br />
-
-        <!-- Search form -->
-        <input
-          class="form-control"
-          type="text"
-          placeholder="Search"
-          aria-label="Search"
-          style="width: 350px; margin-left: 20px"
-        />
-        <br />
-
-        <div class="btn-group">
-          <button
-            type="button"
-            class="btn btn-secondary dropdown-toggle"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            style="background-color: #2f2d2d"
-          >
-            <span
-              style="
-                margin-right: 250px;
-                color: white;
-                font-size: 18px;
-                padding: 12px;
-              "
-              >SEARCH</span
-            >
-          </button>
-          <div class="dropdown-menu dropdown-menu-right">
-            <button class="dropdown-item" type="button">Action</button>
-            <button class="dropdown-item" type="button">Another action</button>
-            <button class="dropdown-item" type="button">
-              Something else here
-            </button>
-          </div>
-        </div>
-        <br /><br />
-
-        <div style="margin-left: 12px">
-          <button
-            type="button"
             class="btn btn-secondary"
-            style="
-              height: 30px;
-              width: 180px;
-              border-radius: 0;
-              background-color: gray;
-            "
-          >
-            Animation</button
-          >&nbsp;
-          <button
-            type="button"
-            class="btn btn-secondary"
-            style="
-              height: 30px;
-              width: 180px;
-              border-radius: 0;
-              background-color: gray;
-            "
-          >
-            Action Movie</button
-          >&nbsp;<br /><br />
-          <button
-            type="button"
-            class="btn btn-secondary"
-            style="
-              height: 30px;
-              width: 180px;
-              border-radius: 0;
-              background-color: gray;
-              margin-top: -2px;
-            "
-          >
-            BollyWood Movie</button
-          >&nbsp;
-          <button
-            type="button"
-            class="btn btn-secondary"
-            style="
-              height: 30px;
-              width: 180px;
-              border-radius: 0;
-              background-color: gray;
-              margin-top: -2px;
-            "
-          >
-            Hollywood Movie</button
-          >&nbsp;<br /><br />
-          <button
-            type="button"
-            class="btn btn-secondary"
-            style="
-              height: 30px;
-              width: 180px;
-              border-radius: 0;
-              background-color: gray;
-              margin-top: -2px;
-            "
-          >
-            Horro Movie</button
-          >&nbsp;
-          <button
-            type="button"
-            class="btn btn-secondary"
-            style="
-              height: 30px;
-              width: 180px;
-              border-radius: 0;
-              background-color: gray;
-              margin-top: -2px;
-            "
-          >
-            Romantic Movie</button
-          >&nbsp;<br /><br />
-          <button
-            type="button"
-            class="btn btn-secondary"
-            style="
-              height: 30px;
-              width: 180px;
-              border-radius: 0;
-              background-color: gray;
-              margin-top: -2px;
-            "
-          >
-            South Movie</button
-          >&nbsp;
-          <button
-            type="button"
-            class="btn btn-secondary"
-            style="
-              height: 30px;
-              width: 180px;
-              border-radius: 0;
-              background-color: gray;
-              margin-top: -2px;
-            "
-          >
-            Webseries Movie</button
-          >&nbsp;
-        </div>
-        <br />
-
-        <div class="btn-group">
-          <button
-            type="button"
-            class="btn btn-secondary dropdown-toggle"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
@@ -360,15 +214,25 @@
               >RECENT MOVIES</span
             >
           </button>
-          <div class="dropdown-menu dropdown-menu-right">
-            <button class="dropdown-item" type="button">Action</button>
-            <button class="dropdown-item" type="button">Another action</button>
-            <button class="dropdown-item" type="button">
-              Something else here
-            </button>
+        </div>
+        <div class="recent-movie-box">
+          <div class="recent-movie" *ngFor="let movie of recentMoviesList">
+            <div class="recent-movie-img">
+              <img
+                src="{{ movie.posterImg }}"
+                alt=""
+                width="95px"
+                height="110px"
+              />
+            </div>
+            <div class="recent-movie-content">
+              <div class="recent-movie-heading">
+                {{ movie.name }}
+              </div>
+              <div class="recent-movies-category">{{ movie.category }}</div>
+            </div>
           </div>
         </div>
-        <br /><br />
       </div>
     </div>
   </div>

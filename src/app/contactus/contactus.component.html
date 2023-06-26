@@ -84,9 +84,8 @@
             <h3 class="card-h3" style="font-size: 24px; font-weight: 600">
               Mr. Ashish Ranjan
             </h3>
+            <p class="contact-p">MERN Stack/MEAN Stack/Application Developer</p>
             <p class="contact-p">
-              MERN Stack Developer
-              <br />
               I am open to work. Connect with me via E-mail and call in to my
               Acccount
             </p>
@@ -234,7 +233,13 @@
               *ngIf="contactForm.controls['message'].errors?.['minlength']"
               style="color: red; font-size: 13px"
             >
-              Message must contains minimum 10 letters.
+              Message is too short.
+            </p>
+            <p
+              *ngIf="contactForm.controls['message'].errors?.['maxlength']"
+              style="color: red; font-size: 13px"
+            >
+              Message is too long.
             </p>
           </div>
           <div style="display: flex; justify-content: center">

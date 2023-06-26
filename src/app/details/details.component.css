@@ -42,8 +42,8 @@ h6 {
   font-style: normal;
 }
 .header_btn {
-  background-color: aliceblue;
-  color: black;
+  background-color: rgb(10, 1, 3);
+  color: white;
   font-style: normal;
   font-size: 14px;
   width: fit-content;
@@ -97,33 +97,92 @@ h6 {
 .downloadBtn {
   width: fit-content !important;
   margin-bottom: 10px;
-  background-color: #ff3e6c;
+  color: #ff014f;
+  background: linear-gradient(145deg, #e2e8ec, #ffff);
+  box-shadow: 4px 4px 18px rgba(37, 35, 35, 0.869),
+    -4px -4px 18px rgb(37, 35, 35, 0.869);
+  border: none;
 }
-.srch {
-  background-color: #2f2d2d;
-  width: 90%;
-}
-.box {
-  height: 300px;
-  width: 800px;
-}
-.social_btn {
-  height: 30px;
-  width: 180px;
-  border-radius: 0;
-  background-color: white;
-  color: #2f2d2d;
-  text-align: center;
-}
-.skyBlueBtn {
-  background-color: skyblue;
+
+.btn-group,
+.btn-group button {
+  width: 100% !important;
 }
 .anchorText {
-  color: white;
+  color: inherit;
   text-decoration: none;
 }
 .spinnerContainer {
   display: flex;
   justify-content: center;
   padding-top: 50px;
+}
+.downloadBtn:hover {
+  background: #ff014f !important;
+  color: white;
+  transform: translateY(-5px);
+  transition: 0.3s;
+}
+.shareBox {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+}
+@media screen and (max-width: 700px) {
+  .social_btn {
+    width: max-content;
+  }
+}
+@media screen and (max-width: 380px) {
+  .shareBox {
+    grid-template-columns: auto;
+  }
+  .social_btn {
+    width: max-content;
+  }
+}
+.social_btn {
+  border-radius: 0;
+  background-color: white;
+  color: #2f2d2d;
+  text-align: center;
+}
+.recent-movie-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 5px;
+}
+.recent-movie {
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+  background-color: rgb(10, 1, 3);
+}
+.recent-movie-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.recent-movie-heading {
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+}
+.recent-movies-category {
+  color: white;
+  font-size: 12px;
+  line-height: 5px;
+  color: gray;
+}
+@media screen and (max-width: 480px) {
+  .recent-movie-heading {
+    font-size: 11px;
+  }
+  .recent-movies-category {
+    font-size: 9px;
+    line-height: 11px;
+  }
 }

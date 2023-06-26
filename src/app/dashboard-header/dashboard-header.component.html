@@ -1,7 +1,7 @@
 <div class="informationBox mt-3">
   <div class="information-card" *ngFor="let information of informationArray">
     <div>
-      <div class="information-text">{{ moviesList?.length ?? "NA" }}</div>
+      <div class="information-text">{{ information.quantity ?? "NA" }}</div>
       <h6 class="text-muted">{{ information.title }}</h6>
     </div>
     <i
@@ -47,7 +47,7 @@
       </table>
     </div>
   </div>
-  <div class="recent-users-box">
+  <!-- <div class="recent-users-box">
     <h5>Recent Users</h5>
     <div class="user my-3">
       <img
@@ -104,5 +104,5 @@
         <div style="font-size: 11px">Indore,India</div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

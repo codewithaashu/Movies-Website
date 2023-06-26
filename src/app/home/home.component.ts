@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MovieService } from '../Service/movie.service';
+import { DataService } from '../Service/data.service';
 
 @Component({
   selector: 'app-home',
@@ -28,9 +29,9 @@ export class HomeComponent {
     this.isFilter = true;
     this.filter = filter;
   }
-  constructor(private movie: MovieService) {
-    this.isFilter = movie.filterCriteria ? true : false;
-    this.filter = movie.filterCriteria;
+  constructor(private movie: MovieService, private dataService: DataService) {
+    this.isFilter = dataService.filterCriteria ? true : false;
+    this.filter = dataService.filterCriteria;
     movie.getMovies().subscribe((data: any) => {
       this.moviesList = data.movies.sort((a: any, b: any) =>
         b.uploadedDate.localeCompare(a.uploadedDate)

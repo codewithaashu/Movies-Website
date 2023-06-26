@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { MovieService } from '../Service/movie.service';
+import { ContactService } from '../Service/contact.service';
+import { DataService } from '../Service/data.service';
 
 @Component({
   selector: 'app-dashboard-header',
@@ -7,18 +9,28 @@ import { MovieService } from '../Service/movie.service';
   styleUrls: ['./dashboard-header.component.css'],
 })
 export class DashboardHeaderComponent {
-  informationArray: Array<any> = [
-    { title: 'Comments', icon: 'fa-regular fa-comment', quantity: 323 },
-    { title: 'Movies', icon: 'fa-solid fa-film', quantity: 60 },
-    { title: 'Messages', icon: 'fa-regular fa-message', quantity: 45 },
-    { title: 'Users', icon: 'fa fa-user', quantity: 38 },
-  ];
-  moviesList: any = null;
-  constructor(private movieService: MovieService) {
+  moviesList: Array<any> | null = null;
+  messageList: Array<any> | null = null;
+  informationArray: Array<any> | undefined;
+  constructor(
+    private movieService: MovieService,
+    private message: ContactService,
+    private data: DataService
+  ) {
+    this.informationArray = data.informationArray;
     movieService.getMovies().subscribe((data: any) => {
       this.moviesList = data.movies.sort((a: any, b: any) =>
         b.uploadedDate.localeCompare(a.uploadedDate)
       );
+    });
+    message.getMessages().subscribe((data: any) => {
+      this.messageList = data.messages;
+    });
+    data.getData().subscribe((resp: any) => {
+      data.informationArray[0].quantity = resp.totalComments;
+      data.informationArray[1].quantity = resp.totalMovies;
+      data.informationArray[2].quantity = resp.totalMessage;
+      data.informationArray[3].quantity = resp.totalMessage;
     });
   }
 }

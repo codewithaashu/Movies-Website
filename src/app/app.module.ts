@@ -14,10 +14,12 @@ import { MessagesComponent } from './messages/messages.component';
 import { CommentsComponent } from './comments/comments.component';
 import { SettingsComponent } from './settings/settings.component';
 import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MovieFilterPipe } from './pipes/movie-filter.pipe';
 import { ContactusComponent } from './contactus/contactus.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommentComponent } from './comment/comment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +36,7 @@ import { ContactusComponent } from './contactus/contactus.component';
     DashboardHeaderComponent,
     MovieFilterPipe,
     ContactusComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,13 @@ import { ContactusComponent } from './contactus/contactus.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 1000,
+      progressBar: true,
+      progressAnimation: 'increasing',
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

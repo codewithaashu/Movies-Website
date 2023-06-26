@@ -1,1 +1,65 @@
-<p>users works!</p>
+<div class="moviesHeadingBox m-4">
+  <h5>Users</h5>
+</div>
+
+<div class="table-box m-5">
+  <div class="table-responsive">
+    <table class="table table-hover" style="--bs-table-bg: none">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+        </tr>
+      </thead>
+      <div class="spinnerContainer" *ngIf="comments === null">
+        <div class="spinner-border text-danger" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <tbody *ngFor="let comment of comments; let i = index">
+        <tr
+          *ngFor="let com of comment.comments; let j = index"
+          [ngClass]="{ alternateColor: (i + j) % 2 != 0 }"
+        >
+          <td>{{ com.name }}</td>
+          <td>{{ com.email == "" ? "NA" : com.email }}</td>
+          <td>{{ com.phone ?? "NA" }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <nav
+      aria-label="Page navigation example"
+      style="float: right"
+      *ngIf="comments !== null"
+      class="my-3"
+    >
+      <ul class="pagination">
+        <li
+          class="page-item page-link"
+          aria-label="Previous"
+          [ngClass]="{ disabledBtn: activePage == 1 }"
+          (click)="activePage = activePage - 1; setCommentList(activePage)"
+        >
+          <span aria-hidden="true">&laquo;</span>
+        </li>
+        <li
+          class="page-item page-link"
+          *ngFor="let pageNo of pages; let i = index"
+          (click)="setCommentList(pageNo)"
+          [ngClass]="{ active: activePage == i + 1 }"
+        >
+          {{ pageNo }}
+        </li>
+        <li
+          class="page-item page-link"
+          aria-label="Next"
+          [ngClass]="{ disabledBtn: activePage == pages[pages.length - 1] }"
+          (click)="activePage = activePage + 1; setCommentList(activePage)"
+        >
+          <span aria-hidden="true">&raquo;</span>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

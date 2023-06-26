@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MovieService } from '../Service/movie.service';
+import { DataService } from '../Service/data.service';
 
 @Component({
   selector: 'app-details',
@@ -9,19 +10,30 @@ import { MovieService } from '../Service/movie.service';
   styleUrls: ['./details.component.css'],
 })
 export class DetailsComponent {
+  location = window.location.href;
   params: any = 0;
   movie: any = null;
+  recentMoviesList: any;
   getMovieVal(filter: any) {
-    this.movieService.filterCriteria = filter;
+    this.dataService.filterCriteria = filter;
   }
   constructor(
     private route: ActivatedRoute,
-    private movieService: MovieService
+    private movieService: MovieService,
+    private dataService: DataService
   ) {
     window.scrollTo(0, 0);
     this.params = this.route.snapshot.paramMap.get('id');
     this.movieService.getMovieDetail(this.params).subscribe((data: any) => {
       this.movie = data.movie;
+    });
+    movieService.getMovies().subscribe((data: any) => {
+      this.recentMoviesList = data.movies
+        .sort((a: any, b: any) => b.uploadedDate.localeCompare(a.uploadedDate))
+        .splice(0, 10)
+        .filter((curr: any) => {
+          return curr._id !== this.params;
+        });
     });
   }
 }

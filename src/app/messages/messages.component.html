@@ -1,1 +1,111 @@
-<p>messages works!</p>
+<div class="moviesHeadingBox m-4">
+  <h5>Messages</h5>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 text-dark" id="staticBackdropLabel">
+          Message
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body text-muted">{{ message }}</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="table-box m-5">
+  <div class="table-responsive">
+    <table class="table table-hover" style="--bs-table-bg: none">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Purpose</th>
+          <th scope="col">Message</th>
+        </tr>
+      </thead>
+      <div class="spinnerContainer" *ngIf="messageList === null">
+        <div class="spinner-border text-danger" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <tbody *ngIf="messageList !== null">
+        <tr
+          *ngFor="let message of messageList; let i = index"
+          [ngClass]="{ alternateColor: i % 2 != 0 }"
+        >
+          <td>{{ message.messageDate.slice(0, 10) ?? "NA" }}</td>
+          <td>{{ message.name }}</td>
+          <td>{{ message.email ?? "NA" }}</td>
+          <td>{{ message.phone ?? "NA" }}</td>
+          <td>{{ message.purpose }}</td>
+          <td style="cursor: pointer">
+            <i
+              class="fa fa-eye mx-2 text-warning"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+              (click)="viewMessage(message._id)"
+            ></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <nav
+      aria-label="Page navigation example"
+      style="float: right"
+      *ngIf="messageList !== null"
+      class="my-3"
+    >
+      <ul class="pagination">
+        <li
+          class="page-item page-link"
+          aria-label="Previous"
+          [ngClass]="{ disabledBtn: activePage == 1 }"
+          (click)="activePage = activePage - 1; setMessageList(activePage)"
+        >
+          <span aria-hidden="true">&laquo;</span>
+        </li>
+        <li
+          class="page-item page-link"
+          *ngFor="let pageNo of pages; let i = index"
+          (click)="setMessageList(pageNo)"
+          [ngClass]="{ active: activePage == i + 1 }"
+        >
+          {{ pageNo }}
+        </li>
+        <li
+          class="page-item page-link"
+          aria-label="Next"
+          [ngClass]="{ disabledBtn: activePage == pages[pages.length - 1] }"
+          (click)="activePage = activePage + 1; setMessageList(activePage)"
+        >
+          <span aria-hidden="true">&raquo;</span>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

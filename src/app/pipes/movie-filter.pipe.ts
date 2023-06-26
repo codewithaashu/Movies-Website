@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { MovieService } from '../Service/movie.service';
+import { DataService } from '../Service/data.service';
 
 @Pipe({
   name: 'movieFilter',
@@ -7,9 +7,9 @@ import { MovieService } from '../Service/movie.service';
 export class MovieFilterPipe implements PipeTransform {
   trendingCriteria: any;
   latestCriteria: any;
-  constructor(private movieService: MovieService) {
-    this.trendingCriteria = movieService.trendingCriteria;
-    this.latestCriteria = movieService.latestCriteria;
+  constructor(private dataService: DataService) {
+    this.trendingCriteria = dataService.trendingCriteria;
+    this.latestCriteria = dataService.latestCriteria;
   }
   transform(value: [], search: string, filter: string): any {
     if (search) {

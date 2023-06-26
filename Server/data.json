@@ -1,0 +1,43 @@
+    {
+        "genre":[
+            "Action",
+            "Adventure",
+            "Animation",
+            "Biography",
+            "Comedy",
+            "Crime",
+            "Drama",
+            "Family",
+            "History",
+            "Horror",
+            "Romantic"
+          ],
+          "movies":["Bollywood", "Hollywood", "South Dubbed"],
+          "webSeries":[
+            "Netflix",
+            "Amazon Prime",
+            "Jio Cinema",
+            "Disney+ Hotstar",
+            "MX Player",
+            "Apple TV +"
+          ],
+          "filters":[
+            "Latest",
+            "Trending",
+            "Bollywood",
+            "South Dubbed",
+            "Netflix",
+            "Hollywood",
+            "Action",
+            "Amazon Prime",
+            "Crime",
+            "MX Player",
+            "Horror",
+            "Jio Cinema",
+            "Disney+ Hotstar",
+            "Romantic",
+            "Apple TV +"
+          ],
+          "trendingCriteria":7.2,
+          "latestCriteria":15
+    }

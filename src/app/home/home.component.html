@@ -10,7 +10,7 @@
         <i class="fa fa-rss" style="font-size: 14px"></i>
         <span style="font-size: 12px; font-weight: 400"
           >{{
-            (moviesList | movieFilter : search : filter).length
+            (moviesList | movieFilter : search : filter)?.length
           }}
           Movies</span
         >

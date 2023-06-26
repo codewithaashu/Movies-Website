@@ -336,7 +336,7 @@
           <td>{{ movie.rating }}</td>
           <td style="cursor: pointer">
             <i
-              class="far fa-edit mx-2 text-primary"
+              class="far fa-edit mx-2 text-success"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
               (click)="updateMovie(movie._id)"
@@ -354,6 +354,7 @@
       aria-label="Page navigation example"
       style="float: right"
       *ngIf="moviesList !== null"
+      class="my-3"
     >
       <ul class="pagination">
         <li

@@ -42,8 +42,15 @@
   text-align: center;
   padding: 5px 0px;
   width: max-content;
+  margin-bottom: 0px;
+}
+@media screen and (max-width: 520px) {
+  .btnclr {
+    font-size: 12px;
+  }
 }
 .btnclr {
+  width: max-content;
   background-color: #ff3e6c;
   border: 1px solid #ff3e6c;
   border-radius: 5px;
