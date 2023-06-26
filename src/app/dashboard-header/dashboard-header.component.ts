@@ -30,7 +30,7 @@ export class DashboardHeaderComponent {
       data.informationArray[0].quantity = resp.totalComments;
       data.informationArray[1].quantity = resp.totalMovies;
       data.informationArray[2].quantity = resp.totalMessage;
-      data.informationArray[3].quantity = resp.totalMessage;
+      data.informationArray[3].quantity = resp.totalComments;
     });
   }
 }
