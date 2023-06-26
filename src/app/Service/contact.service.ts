@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { DataService } from './data.service';
 @Injectable({
   providedIn: 'root',
 })
 export class ContactService {
-  URI = 'http://localhost:9000/message';
-  constructor(private http: HttpClient) {}
+  URI = `${this.data.baseURI}/message`;
+  constructor(private http: HttpClient, private data: DataService) {}
 
   sendMessage(postData: any) {
-    console.log(postData);
     return this.http.post(this.URI, postData);
   }
   getMessages() {

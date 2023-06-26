@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class DataService {
-  URI = 'http://localhost:9000/data';
+  baseURI = 'http://localhost:9000';
   filterCriteria: any;
   trendingCriteria: Number = 7.2;
   latestCriteria: Number = 12;
@@ -64,6 +64,6 @@ export class DataService {
   ];
   constructor(private http: HttpClient) {}
   getData() {
-    return this.http.get(this.URI);
+    return this.http.get(`${this.baseURI}/data`);
   }
 }

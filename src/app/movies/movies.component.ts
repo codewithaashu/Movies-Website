@@ -119,7 +119,6 @@ export class MoviesComponent {
           });
       } else {
         this.movie.addMovies(this.postData).subscribe((data) => {
-          console.log('data', data);
           this.toast.success('Movies added successfully.');
           this.getMoviesList();
         });

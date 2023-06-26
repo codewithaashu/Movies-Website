@@ -22,9 +22,7 @@ export const getMessages = async (req, res) => {
 
 export const getMessage = async (req, res) => {
   try {
-    console.log(req.params.id);
     const message = await Message.findOne({ _id: req.params.id });
-    console.log(message);
     res.status(200).json({ message: message.message });
   } catch (err) {
     res.status(500).json({ msge: "Server Error" });

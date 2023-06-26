@@ -36,7 +36,6 @@ export class ContactusComponent {
   }
 
   formSubmit() {
-    console.log(this.contactForm.valid);
     if (this.contactForm.valid) {
       this.contact
         .sendMessage(this.contactForm.value)

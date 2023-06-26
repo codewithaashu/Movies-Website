@@ -43,7 +43,6 @@ export class CommentComponent {
   ngOnInit() {
     this.commentService.getComments(this._id).subscribe((data: any) => {
       this.comments = data.comments;
-      console.log(data);
     });
   }
   convertDateTimeFormat(data: any) {
@@ -57,15 +56,12 @@ export class CommentComponent {
   }
   formSubmit(_id: any) {
     if (this.commentForm.valid) {
-      console.log(this.commentForm.value);
       this.commentService
         .addComment(this.commentForm.value, _id)
         .subscribe((data: any) => {
-          console.log(data);
           this.toast.success(data?.message);
           this.commentService.getComments(this._id).subscribe((data: any) => {
             this.comments = data.comments;
-            console.log(data);
           });
           this.commentForm.reset();
         });
