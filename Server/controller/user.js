@@ -3,7 +3,6 @@ import bcrypt from "bcrypt";
 export const registerUser = async (req, res) => {
   try {
     const { name, email, mobileNumber, password } = req.body;
-    console.log(req.body);
     let user = await User.findOne({ email });
     if (user) {
       return res.status(200).json({
@@ -11,7 +10,6 @@ export const registerUser = async (req, res) => {
       });
     }
     user = await User.create({ name, email, mobileNumber, password });
-    console.log(user);
     const token = user.generateToken();
     res.status(200).cookie("token", token).json({
       user: { name, email, mobileNumber },
