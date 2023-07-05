@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ContactService } from '../Service/contact.service';
+import { DataService } from '../Service/data.service';
 
 @Component({
   selector: 'app-messages',
@@ -12,7 +13,10 @@ export class MessagesComponent {
   pages: Array<Number> = [];
   activePage: any = 1;
   apiData: any;
-  constructor(private contact: ContactService) {
+  constructor(
+    private contact: ContactService,
+    private dataService: DataService
+  ) {
     contact.getMessages().subscribe((data: any) => {
       this.apiData = data.messages.sort((a: any, b: any) =>
         b.messageDate.localeCompare(a.messageDate)
@@ -26,6 +30,9 @@ export class MessagesComponent {
         .slice(0, 10)
         .sort((a: any, b: any) => b.messageDate.localeCompare(a.messageDate));
     });
+  }
+  convertDateTimeFormat(date: any) {
+    return this.dataService.convertDateTimeFormat(date);
   }
   viewMessage(_id: String) {
     this.contact.getMessage(_id).subscribe((data: any) => {

@@ -57,7 +57,9 @@
           *ngFor="let com of comment.comments; let j = index"
           [ngClass]="{ alternateColor: (i + j) % 2 != 0 }"
         >
-          <td>{{ com.commentTime }}</td>
+          <td>
+            <time>{{ convertDateTimeFormat(com.commentTime) }}</time>
+          </td>
           <td>{{ comment.name.slice(0, 25) ?? "NA" }}</td>
           <td>{{ comment.category }}</td>
           <td>{{ com.name }}</td>

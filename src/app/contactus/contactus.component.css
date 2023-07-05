@@ -1,9 +1,19 @@
 .mainContainer {
   width: 100vw;
+  padding: 0px 10vw;
   min-height: 100vh;
   background-color: black;
-  padding: 0px 10vw;
   color: white !important;
+  overflow-x: hidden !important;
+}
+@media screen and (max-width: 520px) {
+  .mainContainer {
+    padding: 10px;
+  }
+}
+.navbar-toggler:focus {
+  box-shadow: none;
+  border: 3px solid black;
 }
 .logoStyle {
   padding: 0px 20px;
@@ -38,6 +48,7 @@
   padding: 10px 15px;
   cursor: pointer;
 }
+
 .contact-card-box {
   padding: 10px;
   width: 380px;
@@ -164,4 +175,25 @@
   margin: 0;
   padding: 0px 50px;
   font-size: 14px;
+}
+@media screen and (max-width: 520px) {
+  .services-p {
+    padding: 5px 15px;
+    font-size: 13px;
+  }
+  .label-div {
+    font-size: 15px;
+  }
+  .input-div {
+    font-size: 13px;
+  }
+  h3 {
+    font-size: 22px !important;
+  }
+  .contact-btn-head {
+    font-size: 18px;
+  }
+  .portfolio-h1 {
+    font-size: 28px;
+  }
 }

@@ -12,9 +12,11 @@ export class HomeComponent {
   hoverIndex: any = null;
   moviesList: any = null;
   isFilter: boolean = false;
+  isSearch: boolean = false;
   search: any;
   filter: any;
-
+  pages: any;
+  apiData: any;
   onHover(i: any) {
     this.hoverIndex = i;
     this.hover = true;
@@ -24,9 +26,13 @@ export class HomeComponent {
   }
   getSearchVal($event: any) {
     this.search = $event;
+    this.isSearch = true;
+    this.isFilter = false;
   }
   getMovieVal(filter: any) {
     this.isFilter = true;
+    this.isSearch = false;
+    this.search = '';
     this.filter = filter;
   }
   constructor(private movie: MovieService, private dataService: DataService) {

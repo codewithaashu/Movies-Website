@@ -53,11 +53,19 @@
       </div>
     </form>
   </div>
+  <div
+    class="spinnerContainer col-sm-12 col-md-8 col-lg-8"
+    *ngIf="comments == null"
+  >
+    <div class="spinner-border text-danger" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
   <div class="noComment" *ngIf="comments?.length === 0">
     <p>No Comments !!</p>
   </div>
   <div class="comment-box" *ngIf="comments?.length > 0">
-    <div class="comment" *ngFor="let comment of comments.reverse()">
+    <div class="comment" *ngFor="let comment of comments">
       <div
         class="comment-heading"
         style="display: flex; justify-content: space-between"

@@ -20,6 +20,9 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommentComponent } from './comment/comment.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { InfoComponent } from './info/info.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +40,9 @@ import { CommentComponent } from './comment/comment.component';
     MovieFilterPipe,
     ContactusComponent,
     CommentComponent,
+    LoginComponent,
+    RegisterComponent,
+    InfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,7 @@ import { CommentComponent } from './comment/comment.component';
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot({
-      timeOut: 1000,
+      timeOut: 2000,
       progressBar: true,
       progressAnimation: 'increasing',
       positionClass: 'toast-top-right',

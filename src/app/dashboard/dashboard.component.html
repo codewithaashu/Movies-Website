@@ -43,7 +43,12 @@
         <i class="fa-solid fa-film"></i>
         <h6>Movies</h6>
       </a>
-      <a routerLink="users" class="sideNav" (click)="closeSideBar()">
+      <a
+        routerLink="users"
+        class="sideNav"
+        *ngIf="user?.userType == 'Super-Admin'"
+        (click)="closeSideBar()"
+      >
         <i class="fa fa-user" aria-hidden="true"></i>
         <h6>Users</h6>
       </a>
@@ -51,7 +56,12 @@
         <i class="fa-regular fa-comment"></i>
         <h6>Comments</h6>
       </a>
-      <a routerLink="messages" class="sideNav" (click)="closeSideBar()">
+      <a
+        routerLink="messages"
+        class="sideNav"
+        *ngIf="user?.userType == 'Super-Admin'"
+        (click)="closeSideBar()"
+      >
         <i class="fa-regular fa-message"></i>
         <h6>Messages</h6>
       </a>
@@ -59,7 +69,7 @@
         <i class="fa fa-cog" aria-hidden="true"></i>
         <h6>Settings</h6>
       </a> -->
-      <a routerLink="/" class="sideNav" (click)="closeSideBar()">
+      <a routerLink="/" class="sideNav" (click)="signOut()">
         <i class="fa fa-sign-out" aria-hidden="true"></i>
         <h6>Sign-Out</h6>
       </a>
@@ -79,14 +89,16 @@
         aria-label="Search"
         style="width: 50%"
       />
-      <button class="imgBtn">
+      <a class="imgBtn anchorText" routerLink="/">
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSfb1QfWFmTatxiz6a81GeJk6Chr3MXmcHoRNUX1E&s"
           alt=""
           style="width: 25px; border-radius: 50%"
         />
-        <h6 style="font-size: 13px">Ashish</h6>
-      </button>
+        <h6 style="font-size: 13px">
+          {{ user?.name.slice(0, 15) ?? "Unknown" }}
+        </h6>
+      </a>
     </div>
     <router-outlet> </router-outlet>
   </div>

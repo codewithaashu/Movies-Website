@@ -1,4 +1,4 @@
-<div style="background-color: rgb(10, 1, 3); padding-bottom: 20px">
+<div class="px-1" style="background-color: rgb(10, 1, 3); padding-bottom: 20px">
   <div class="logoBox py-2 px-4">
     <a
       aria-current="page"
@@ -25,10 +25,16 @@
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          style="border: 2px solid black"
+          (click)="collapseFunc()"
         >
-          <span class="navbar-toggler-icon"></span>
+          <i class="fas fa-bars" style="font-size: larger; color: white"></i>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div
+          class="collapse navbar-collapse"
+          id="navbarSupportedContent"
+          [ngClass]="{ show: collapse }"
+        >
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a
@@ -54,6 +60,7 @@
                     class="dropdown-item"
                     *ngFor="let item of webSeries"
                     (click)="filterMovie(item)"
+                    (click)="collapseFunc()"
                   >
                     {{ item }}
                   </li>
@@ -76,6 +83,7 @@
                     class="dropdown-item"
                     *ngFor="let items of movies"
                     (click)="filterMovie(items)"
+                    (click)="collapseFunc()"
                   >
                     {{ items }}
                   </li>
@@ -98,6 +106,7 @@
                     class="dropdown-item"
                     *ngFor="let item of genre"
                     (click)="filterMovie(item)"
+                    (click)="collapseFunc()"
                   >
                     {{ item }}
                   </li>
@@ -113,17 +122,26 @@
               >
             </li>
           </ul>
-          <!-- <form class="d-flex" role="search">
-            <a routerLink="/dashboard" class="anchorText">
+          <form class="d-flex" role="search">
+            <a routerLink="/login" class="anchorText" *ngIf="!isLogin">
               <button
                 class="btn btn-primary"
                 type="submit"
                 style="background-color: inherit"
               >
-                Login
+                Upload Movies
               </button>
             </a>
-          </form> -->
+            <a routerLink="/dashboard" class="anchorText" *ngIf="isLogin">
+              <button
+                class="btn btn-primary"
+                type="submit"
+                style="background-color: inherit"
+              >
+                Dashboard
+              </button>
+            </a>
+          </form>
         </div>
       </div>
     </nav>

@@ -45,7 +45,6 @@ const movieSchema = new mongoose.Schema({
   },
   uploadedDate: {
     type: Date,
-    default: new Date(),
   },
   releasedDate: {
     type: String,
@@ -82,8 +81,7 @@ const movieSchema = new mongoose.Schema({
         email: String,
         phone: Number,
         commentTime: {
-          type: String,
-          default: new Date().toLocaleString(),
+          type: Date,
         },
       },
     ],

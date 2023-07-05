@@ -10,6 +10,7 @@ import {
 import { MovieService } from '../Service/movie.service';
 import { DataService } from '../Service/data.service';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from '../Service/user.service';
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
@@ -29,12 +30,13 @@ export class MoviesComponent {
   movieDetailsForm: FormGroup;
   moviesList: any = null;
   postData: any;
-
+  user: any;
   constructor(
     private fb: FormBuilder,
     private dataService: DataService,
     private movie: MovieService,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private userService: UserService
   ) {
     this.genres = dataService.genre;
     this.movies = dataService.movies;
@@ -58,8 +60,10 @@ export class MoviesComponent {
       genre: this.fb.array(this.genres.map((x) => false)),
       subtitle: new FormControl(),
     });
-
     this.getMoviesList();
+    userService.getUser().subscribe((data: any) => {
+      this.user = data.user;
+    });
   }
 
   convertGenreName(arr: Array<any>) {

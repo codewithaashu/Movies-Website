@@ -16,6 +16,7 @@ import { ContactService } from '../Service/contact.service';
 })
 export class ContactusComponent {
   contactForm: FormGroup;
+  isLogin = localStorage.getItem('authToken') ? true : false;
   constructor(
     private fb: FormBuilder,
     private contact: ContactService,
@@ -46,5 +47,9 @@ export class ContactusComponent {
     } else {
       this.toastr.error('Please filled all mandatory field.');
     }
+  }
+  collapse = false;
+  collapseFunc() {
+    this.collapse = !this.collapse;
   }
 }

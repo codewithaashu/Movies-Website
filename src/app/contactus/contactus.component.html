@@ -26,8 +26,10 @@
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            style="border: 2px solid black"
+            (click)="collapseFunc()"
           >
-            <span class="navbar-toggler-icon"></span>
+            <i class="fas fa-bars" style="font-size: larger; color: white"></i>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -35,19 +37,29 @@
                 <a
                   class="nav-link active linkTextStyle"
                   aria-current="page"
-                  href="/"
+                  routerLink="/"
+                  (click)="collapseFunc()"
                   >Home</a
                 >
               </li>
             </ul>
             <form class="d-flex" role="search">
-              <a routerLink="/dashboard" class="anchorText">
+              <a routerLink="/login" class="anchorText" *ngIf="!isLogin">
                 <button
                   class="btn btn-primary"
                   type="submit"
                   style="background-color: inherit"
                 >
-                  Login
+                  Upload Movies
+                </button>
+              </a>
+              <a routerLink="/dashboard" class="anchorText" *ngIf="isLogin">
+                <button
+                  class="btn btn-primary"
+                  type="submit"
+                  style="background-color: inherit"
+                >
+                  Dashboard
                 </button>
               </a>
             </form>
@@ -253,7 +265,6 @@
                 font-size: 15px;
                 outline: none;
               "
-              (click)="formSubmit()"
             >
               Send Messages
             </button>

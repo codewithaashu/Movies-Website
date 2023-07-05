@@ -1,7 +1,101 @@
 <div class="moviesHeadingBox m-4">
   <h5>Users</h5>
 </div>
-
+<div
+  class="modal fade text-dark"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Details</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form
+          [formGroup]="userDetailsForm"
+          (ngSubmit)="formSubmit()"
+          #formGroupFields="ngForm"
+        >
+          <div class="mb-2">
+            <label for="exampleFormControlInput1" class="form-label"
+              >User Name</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="Enter user name"
+              formControlName="name"
+            />
+          </div>
+          <div class="mb-2">
+            <label for="exampleFormControlInput1" class="form-label"
+              >User Type</label
+            >
+            <select
+              class="form-select"
+              aria-label="Category"
+              formControlName="userType"
+            >
+              <option selected value="Admin">Admin</option>
+              <option value="Super-Admin">Super-Admin</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"
+              >Verified</label
+            >
+            <br />
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="verified"
+                id="inlineRadio1"
+                value="false"
+                formControlName="verified"
+              />
+              <label class="form-check-label" for="inlineRadio1">No</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="verified"
+                id="inlineRadio2"
+                value="true"
+                formControlName="verified"
+              />
+              <label class="form-check-label" for="inlineRadio2">Yes</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="formSubmit()"
+          data-bs-dismiss="modal"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="table-box m-5">
   <div class="table-responsive">
     <table class="table table-hover" style="--bs-table-bg: none">
@@ -10,28 +104,50 @@
           <th scope="col">Name</th>
           <th scope="col">Email</th>
           <th scope="col">Phone</th>
+          <th scope="col">Verified</th>
+          <th scope="col">User Type</th>
+          <th scope="col">Action</th>
         </tr>
       </thead>
-      <div class="spinnerContainer" *ngIf="comments === null">
+      <div class="spinnerContainer" *ngIf="users === null">
         <div class="spinner-border text-danger" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
       </div>
-      <tbody *ngFor="let comment of comments; let i = index">
+      <tbody>
         <tr
-          *ngFor="let com of comment.comments; let j = index"
-          [ngClass]="{ alternateColor: (i + j) % 2 != 0 }"
+          *ngFor="let user of users; let i = index"
+          [ngClass]="{ alternateColor: i % 2 != 0 }"
         >
-          <td>{{ com.name }}</td>
-          <td>{{ com.email == "" ? "NA" : com.email }}</td>
-          <td>{{ com.phone ?? "NA" }}</td>
+          <td>{{ user.name }}</td>
+          <td>
+            {{
+              user.email == "" || user.email == undefined ? "NA" : user.email
+            }}
+          </td>
+          <td>{{ user.mobileNumber ?? "NA" }}</td>
+          <td>{{ user.verified }}</td>
+          <td>{{ user.userType }}</td>
+          <td style="cursor: pointer">
+            <i
+              class="far fa-edit mx-2 text-success"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              (click)="updateDetails(user._id)"
+            ></i>
+            <i
+              class="fa fa-trash mx-2 text-danger"
+              aria-hidden="true"
+              (click)="deleteDetails(user._id)"
+            ></i>
+          </td>
         </tr>
       </tbody>
     </table>
     <nav
       aria-label="Page navigation example"
       style="float: right"
-      *ngIf="comments !== null"
+      *ngIf="users !== null"
       class="my-3"
     >
       <ul class="pagination">
@@ -39,14 +155,14 @@
           class="page-item page-link"
           aria-label="Previous"
           [ngClass]="{ disabledBtn: activePage == 1 }"
-          (click)="activePage = activePage - 1; setCommentList(activePage)"
+          (click)="activePage = activePage - 1; setUsersList(activePage)"
         >
           <span aria-hidden="true">&laquo;</span>
         </li>
         <li
           class="page-item page-link"
           *ngFor="let pageNo of pages; let i = index"
-          (click)="setCommentList(pageNo)"
+          (click)="setUsersList(pageNo)"
           [ngClass]="{ active: activePage == i + 1 }"
         >
           {{ pageNo }}
@@ -55,7 +171,7 @@
           class="page-item page-link"
           aria-label="Next"
           [ngClass]="{ disabledBtn: activePage == pages[pages.length - 1] }"
-          (click)="activePage = activePage + 1; setCommentList(activePage)"
+          (click)="activePage = activePage + 1; setUsersList(activePage)"
         >
           <span aria-hidden="true">&raquo;</span>
         </li>

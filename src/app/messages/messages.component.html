@@ -58,7 +58,9 @@
           *ngFor="let message of messageList; let i = index"
           [ngClass]="{ alternateColor: i % 2 != 0 }"
         >
-          <td>{{ message.messageDate.slice(0, 10) ?? "NA" }}</td>
+          <td>
+            <time>{{ convertDateTimeFormat(message.messageDate) }}</time>
+          </td>
           <td>{{ message.name }}</td>
           <td>{{ message.email ?? "NA" }}</td>
           <td>{{ message.phone ?? "NA" }}</td>

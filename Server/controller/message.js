@@ -2,10 +2,9 @@ import Message from "../DB/Model/message.js";
 
 export const addMessage = async (req, res) => {
   try {
-    const message = new Message(req.body);
-    await message.validate();
-    await message.save();
-    res.status(200).json({ message, msge: "Message successfully sent." });
+    const msge = await Message.create({ ...req.body, messageDate: new Date() });
+    await msge.save();
+    res.status(200).json({ msge, msge: "Message successfully sent." });
   } catch (err) {
     res.status(500).json({ msge: err.message });
   }

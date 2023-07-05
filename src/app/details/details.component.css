@@ -3,10 +3,18 @@
   padding: 0px 10vw;
   min-height: 100vh;
   background-color: black;
+  overflow-x: hidden !important;
+  color: white;
+}
+@media screen and (max-width: 520px) {
+  .mainContainer {
+    padding: 10px;
+  }
 }
 .container {
   background-color: #1b1b1b;
   padding: 20px 0px;
+  min-height: 100%;
 }
 h2 {
   color: white;
@@ -38,7 +46,7 @@ h6 {
   color: white;
   width: 100%;
   padding: 10px;
-  font-size: 15px;
+  font-size: 16px;
   font-style: normal;
 }
 .header_btn {
@@ -48,6 +56,9 @@ h6 {
   font-size: 14px;
   width: fit-content;
   margin: 0px 5px;
+}
+.header_btn:hover {
+  background-color: gray;
 }
 .posterImg {
   width: 100%;
@@ -74,7 +85,7 @@ h6 {
 }
 .info_head {
   color: white;
-  font-size: 16px;
+  font-size: 18px;
   text-align: center;
   border: 1px solid black;
   background-color: #2f2d2d;
@@ -82,7 +93,29 @@ h6 {
 }
 .info {
   padding: 10px;
+  color: #ff0000;
+  font-size: 16px;
+}
+.info span {
   color: white;
+  font-size: 14px;
+}
+@media screen and (max-width: 520px) {
+  .info {
+    font-size: 15px;
+  }
+  .info span {
+    font-size: 13px;
+  }
+  .info p {
+    font-size: 13px;
+  }
+  .info h5 {
+    font-size: 15px;
+  }
+  .info_head {
+    font-size: 16px;
+  }
 }
 .screenshot {
   text-align: center;
@@ -113,9 +146,11 @@ h6 {
   text-decoration: none;
 }
 .spinnerContainer {
+  width: 100%;
   display: flex;
   justify-content: center;
   padding-top: 50px;
+  height: 100%;
 }
 .downloadBtn:hover {
   background: #ff014f !important;
@@ -125,22 +160,18 @@ h6 {
 }
 .shareBox {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 150px 150px;
   justify-content: center;
   gap: 15px;
   width: 100%;
 }
-@media screen and (max-width: 700px) {
-  .social_btn {
-    width: max-content;
-  }
-}
-@media screen and (max-width: 380px) {
+
+@media screen and (max-width: 340px) {
   .shareBox {
     grid-template-columns: auto;
   }
   .social_btn {
-    width: max-content;
+    width: 100%;
   }
 }
 .social_btn {
@@ -148,6 +179,7 @@ h6 {
   background-color: white;
   color: #2f2d2d;
   text-align: center;
+  width: 150px;
 }
 .recent-movie-box {
   display: flex;
@@ -167,7 +199,7 @@ h6 {
   gap: 5px;
 }
 .recent-movie-heading {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 600;
   color: white;
 }
@@ -177,12 +209,13 @@ h6 {
   line-height: 5px;
   color: gray;
 }
-@media screen and (max-width: 480px) {
-  .recent-movie-heading {
-    font-size: 11px;
+@media screen and (max-width: 520px) {
+  .recent-movie-heading,
+  .downloadBtn {
+    font-size: 13px;
   }
   .recent-movies-category {
-    font-size: 9px;
+    font-size: 11px;
     line-height: 11px;
   }
 }

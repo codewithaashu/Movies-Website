@@ -6,7 +6,10 @@ export const addComment = async (req, res) => {
     if (!movie) {
       return res.status(400).json({ message: "Comment cannot be added." });
     }
-    movie.comments = [...movie.comments, { ...req.body }];
+    movie.comments = [
+      ...movie.comments,
+      { ...req.body, commentTime: new Date() },
+    ];
     await movie.save();
     res.status(200).json({ movie, message: "Comment added successfully." });
   } catch (err) {

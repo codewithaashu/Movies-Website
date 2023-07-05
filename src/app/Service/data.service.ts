@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class DataService {
-  // baseURI = 'http://localhost:9000';
-  baseURI = 'https://moviesmania-server.onrender.com';
+  baseURI = 'http://localhost:9000';
+  // baseURI = 'https://moviesmania-server.onrender.com';
   filterCriteria: any;
   trendingCriteria: Number = 7.2;
   latestCriteria: Number = 12;
@@ -66,5 +66,35 @@ export class DataService {
   constructor(private http: HttpClient) {}
   getData() {
     return this.http.get(`${this.baseURI}/data`);
+  }
+  month = [
+    'Jan',
+    'Feb',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  convertDateTimeFormat(arg: any) {
+    var d = new Date(arg);
+    var currentOffset = d.getTimezoneOffset();
+    var ISTOffset = 330;
+    var ISTTime = new Date(d.getTime() + (ISTOffset + currentOffset) * 60000);
+
+    var data = ISTTime.toLocaleString();
+    const dateTimeArr = data.split(',');
+    const time = dateTimeArr[1];
+    const dateArr = dateTimeArr[0].split('/');
+    const month = this.month[Number(dateArr[0])];
+    const date = Number(dateArr[1]);
+    const year = Number(dateArr[2]);
+
+    return date + ' ' + month + ' ' + year + '  -  ' + time;
   }
 }

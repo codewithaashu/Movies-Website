@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CommentService } from '../Service/comment.service';
+import { DataService } from '../Service/data.service';
 
 @Component({
   selector: 'app-comment',
@@ -12,26 +13,13 @@ export class CommentComponent {
   commentForm: FormGroup;
   //create an input decorator and take data from decorator
   id: any;
-  month = [
-    'Jan',
-    'Feb',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
   @Input() _id: any;
-  comments: any;
+  comments: any = null;
   constructor(
     private fb: FormBuilder,
     private toast: ToastrService,
-    private commentService: CommentService
+    private commentService: CommentService,
+    private dataService: DataService
   ) {
     this.commentForm = fb.group({
       comment: ['', Validators.required],
@@ -42,17 +30,13 @@ export class CommentComponent {
   }
   ngOnInit() {
     this.commentService.getComments(this._id).subscribe((data: any) => {
-      this.comments = data.comments;
+      this.comments = data.comments
+        .sort((a: any, b: any) => b.commentTime.localeCompare(a.commentTime))
+        .splice(0, 10);
     });
   }
-  convertDateTimeFormat(data: any) {
-    const dateTimeArr = data.split(',');
-    const time = dateTimeArr[1];
-    const dateArr = dateTimeArr[0].split('/');
-    const month = this.month[Number(dateArr[0])];
-    const date = Number(dateArr[1]);
-    const year = Number(dateArr[2]);
-    return date + ' ' + month + ' ' + year + '  -  ' + time;
+  convertDateTimeFormat(date: any) {
+    return this.dataService.convertDateTimeFormat(date);
   }
   formSubmit(_id: any) {
     if (this.commentForm.valid) {
@@ -61,7 +45,11 @@ export class CommentComponent {
         .subscribe((data: any) => {
           this.toast.success(data?.message);
           this.commentService.getComments(this._id).subscribe((data: any) => {
-            this.comments = data.comments;
+            this.comments = data.comments
+              .sort((a: any, b: any) =>
+                b.commentTime.localeCompare(a.commentTime)
+              )
+              .splice(0, 10);
           });
           this.commentForm.reset();
         });

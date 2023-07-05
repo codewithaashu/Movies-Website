@@ -16,17 +16,21 @@ export class HeaderComponent {
   webSeries: any;
   years: Array<any> = [];
   filters: any;
+  isLogin = localStorage.getItem('authToken') ? true : false;
   constructor(private movie: MovieService, private data: DataService) {
     this.genre = data.genre;
     this.movies = data.movies;
     this.webSeries = data.webSeries;
     this.filters = data.filters;
   }
-
+  collapse = false;
   searchData(event: any) {
     this.getSearch.emit(event.target.value);
   }
   filterMovie(filter: string) {
     this.getMovie.emit(filter);
+  }
+  collapseFunc() {
+    this.collapse = !this.collapse;
   }
 }

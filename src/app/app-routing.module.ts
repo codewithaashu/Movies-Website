@@ -10,6 +10,9 @@ import { MessagesComponent } from './messages/messages.component';
 import { SettingsComponent } from './settings/settings.component';
 import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
 import { ContactusComponent } from './contactus/contactus.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { InfoComponent } from './info/info.component';
 const routes: Routes = [
   {
     path: '',
@@ -52,6 +55,18 @@ const routes: Routes = [
         component: UsersComponent,
       },
     ],
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+  },
+  {
+    path: 'info',
+    component: InfoComponent,
   },
 ];
 

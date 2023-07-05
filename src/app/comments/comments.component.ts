@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { CommentService } from '../Service/comment.service';
+import { DataService } from '../Service/data.service';
 
 @Component({
   selector: 'app-comments',
@@ -13,7 +14,10 @@ export class CommentsComponent {
   apiData: any;
   pages: Array<Number> = [];
   activePage: any = 1;
-  constructor(private commentService: CommentService) {
+  constructor(
+    private commentService: CommentService,
+    private dataService: DataService
+  ) {
     commentService.getAllComments().subscribe((data: any) => {
       this.apiData = data.comments.sort((a: any, b: any) =>
         b.uploadedDate.localeCompare(a.uploadedDate)
@@ -37,5 +41,8 @@ export class CommentsComponent {
       (pageNo - 1) * 10,
       (pageNo - 1) * 10 + 10
     );
+  }
+  convertDateTimeFormat(date: any) {
+    return this.dataService.convertDateTimeFormat(date);
   }
 }

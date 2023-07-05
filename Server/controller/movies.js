@@ -15,7 +15,7 @@ export const addMovie = async (req, res) => {
     if (movie) {
       return res.status(400).json({ message: "Movies Already Exist" });
     }
-    movie = await Movies.create(req.body);
+    movie = await Movies.create({ ...req.body, uploadedDate: new Date() });
     res.status(200).json({ movie, message: "Movie Added Successfully" });
   } catch (err) {
     res.status(500).json({ message: "Server Error" });

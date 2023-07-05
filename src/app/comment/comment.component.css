@@ -79,11 +79,28 @@ b {
   white-space: nowrap;
   text-transform: capitalize;
   font-weight: bolder;
-  font-size: 16px;
+  font-size: 15px;
 }
 .noComment {
   height: 100px;
   display: flex;
   align-items: center;
   color: red;
+}
+@media screen and (max-width: 520px) {
+  .form-btn,
+  b {
+    font-size: 14px;
+  }
+  .comment-description {
+    font-size: 11px;
+  }
+}
+
+.spinnerContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 50px 0px;
+  height: 100%;
 }

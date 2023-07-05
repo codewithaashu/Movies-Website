@@ -6,6 +6,21 @@
 .row {
   align-items: center;
 }
+.rightBorder {
+  border-right: 2px solid rgb(107, 114, 128);
+}
+@media screen and (max-width: 520px) {
+  a {
+    font-size: 18px !important;
+  }
+  .p2 {
+    display: block !important;
+    font-size: 11px !important ;
+  }
+  .rightBorder {
+    display: none !important;
+  }
+}
 .fa {
   padding: 10px;
   font-size: 30x;

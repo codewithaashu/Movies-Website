@@ -80,4 +80,6 @@
   flex-direction: row;
   gap: 3px;
   align-items: center;
+  text-decoration: none;
+  cursor: pointer;
 }

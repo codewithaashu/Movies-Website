@@ -315,7 +315,7 @@
           <th scope="col">Duration</th>
           <th scope="col">Released Date</th>
           <th scope="col">Rating</th>
-          <th scope="col">Action</th>
+          <th scope="col" *ngIf="user?.userType == 'Super-Admin'">Action</th>
         </tr>
       </thead>
       <div class="spinnerContainer" *ngIf="moviesList === null">
@@ -334,7 +334,7 @@
           <td>{{ movie.duration }}</td>
           <td>{{ movie.releasedDate }}</td>
           <td>{{ movie.rating }}</td>
-          <td style="cursor: pointer">
+          <td style="cursor: pointer" *ngIf="user?.userType == 'Super-Admin'">
             <i
               class="far fa-edit mx-2 text-success"
               data-bs-toggle="modal"
